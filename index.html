@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Audio2text | Donnez une forme claire à vos enregistrements</title>
+  <meta
+    name="description"
+    content="Audio2text vous aide à transformer vos fichiers audio et vidéo en texte clair, précis et facile à réutiliser depuis votre appareil Android."
+  />
+  <style>
+    /* Palette froide et lumineuse alignée avec l'identité visuelle de l'application. */
+    :root {
+      --bg: #f4f8fc;
+      --surface: rgba(255, 255, 255, 0.9);
+      --surface-strong: #ffffff;
+      --surface-soft: #f8fbff;
+      --text: #10233d;
+      --text-soft: #56708a;
+      --line: #d9e3ee;
+      --line-soft: rgba(142, 166, 193, 0.28);
+      --accent: #2f6fb3;
+      --accent-deep: #0a3d84;
+      --accent-soft: #dce8f6;
+      --shadow: 0 26px 60px rgba(10, 38, 71, 0.1);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --content-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(47, 111, 179, 0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(220, 232, 246, 0.8), transparent 36%),
+        linear-gradient(180deg, #fbfdff 0%, var(--bg) 56%, #eef4fa 100%);
+      font: 16px/1.75 "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Texture très légère pour éviter un fond trop lisse. */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),
+        radial-gradient(rgba(16, 35, 61, 0.03) 0.8px, transparent 0.8px);
+      background-size: auto, 26px 26px;
+      opacity: 0.5;
+    }
+
+    .container {
+      width: min(calc(100% - 48px), var(--content-width));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(248, 251, 255, 0.78);
+      border-bottom: 1px solid rgba(142, 166, 193, 0.18);
+    }
+
+    .site-header__inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    /* Le bouton d'accueil garde le logo transparent sans capsule décorative. */
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .brand__mark {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .site-nav a {
+      color: var(--text-soft);
+      font-size: 0.97rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button--primary {
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+      box-shadow: 0 18px 36px rgba(47, 111, 179, 0.22);
+    }
+
+    .button--secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.72);
+      border-color: rgba(142, 166, 193, 0.52);
+    }
+
+    .site-nav .button--primary,
+    .site-nav .button--secondary {
+      color: inherit;
+    }
+
+    .site-nav .button--primary {
+      color: #ffffff;
+    }
+
+    .site-nav .button--secondary {
+      color: var(--text);
+    }
+
+    main {
+      padding-bottom: 64px;
+    }
+
+    /* Hero pleine largeur, sans texte superposé, pour laisser respirer la bannière. */
+    .hero-banner {
+      padding: 0;
+      margin: 0 0 48px;
+    }
+
+    .hero-banner img {
+      width: 100%;
+      height: min(72vh, 660px);
+      min-height: 320px;
+      object-fit: cover;
+      object-position: center;
+      box-shadow: 0 30px 65px rgba(10, 38, 71, 0.16);
+    }
+
+    section {
+      padding: 56px 0;
+      scroll-margin-top: 110px;
+    }
+
+    .intro {
+      padding-top: 24px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(220, 232, 246, 0.76);
+      color: var(--accent-deep);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      font-family: "Cormorant Garamond", "Times New Roman", serif;
+      line-height: 0.98;
+      color: #0f223b;
+    }
+
+    h1 {
+      margin-top: 18px;
+      font-size: clamp(3rem, 6.3vw, 5.4rem);
+      max-width: 48rem;
+    }
+
+    h2 {
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      max-width: 48rem;
+    }
+
+    .intro__lead {
+      max-width: 48rem;
+      margin: 28px 0 0;
+      color: var(--text-soft);
+      font-size: 1.14rem;
+    }
+
+    .intro__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .section-head {
+      max-width: 48rem;
+      margin-bottom: 34px;
+    }
+
+    /* Les titres de section gardent une vraie présence et la même largeur visuelle que leur texte. */
+    .section-head h2 {
+      width: 100%;
+      max-width: 48rem;
+    }
+
+    /* On ajoute un vrai espace entre titre et texte pour éviter la sensation compacte. */
+    .section-head p {
+      margin: 22px 0 0;
+      color: var(--text-soft);
+      font-size: 1.04rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .features {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .steps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .reasons {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    /* Les cartes restent simples, sans barre verticale bleue ni effet trop appuyé. */
+    .card {
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 251, 255, 0.94));
+      box-shadow: 0 18px 36px rgba(15, 34, 59, 0.06);
+    }
+
+    .card-kicker {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .card h3 {
+      margin: 0 0 14px;
+      font-size: 1.28rem;
+      line-height: 1.24;
+      color: #0f223b;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--text-soft);
+    }
+
+    .step-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(47, 111, 179, 0.12), rgba(10, 61, 132, 0.18));
+      color: var(--accent-deep);
+      font-weight: 800;
+    }
+
+    .cta {
+      padding-top: 68px;
+    }
+
+    .cta-panel {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 24px;
+      align-items: center;
+      padding: 32px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 248, 252, 0.94));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    /* Le titre et le texte du dernier bloc partagent la même largeur pour un rendu plus équilibré. */
+    .cta-panel__copy {
+      display: flex;
+      flex-direction: column;
+      max-width: 40rem;
+    }
+
+    /* L'étiquette du bloc final revient à gauche avec plus d'espace avant le titre. */
+    .cta-panel__copy .eyebrow {
+      align-self: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .cta-panel__copy h2,
+    .cta-panel__copy p {
+      width: 100%;
+      max-width: none;
+    }
+
+    .cta-panel p {
+      margin: 22px 0 0;
+      color: var(--text-soft);
+    }
+
+    .cta-panel__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    /* Le visuel final reste léger et laisse le logo respirer sur fond clair. */
+    .cta-panel__visual {
+      position: relative;
+      min-height: 320px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at center, rgba(220, 232, 246, 0.92), rgba(220, 232, 246, 0.18) 56%, transparent 74%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(248, 251, 255, 0.72));
+      border: 1px solid rgba(217, 227, 238, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .cta-panel__visual::after {
+      content: "";
+      position: absolute;
+      inset: auto 20% 11%;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(10, 38, 71, 0.1);
+      filter: blur(20px);
+    }
+
+    .cta-panel__visual img {
+      position: relative;
+      z-index: 1;
+      width: min(280px, 64%);
+      object-fit: contain;
+      filter: drop-shadow(0 18px 30px rgba(15, 34, 59, 0.12));
+    }
+
+    .footer {
+      padding: 18px 0 46px;
+    }
+
+    .footer__inner {
+      padding-top: 22px;
+      border-top: 1px solid rgba(142, 166, 193, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .footer p,
+    .footer__links a {
+      color: var(--text-soft);
+    }
+
+    .footer__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: reveal-up 680ms ease forwards;
+    }
+
+    .reveal--2 {
+      animation-delay: 120ms;
+    }
+
+    .reveal--3 {
+      animation-delay: 240ms;
+    }
+
+    @keyframes reveal-up {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 960px) {
+      .features,
+      .steps,
+      .reasons,
+      .cta-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-banner img {
+        height: min(58vh, 520px);
+      }
+    }
+
+    @media (max-width: 720px) {
+      body {
+        font-size: 15px;
+      }
+
+      .container {
+        width: min(calc(100% - 28px), var(--content-width));
+      }
+
+      .site-header__inner,
+      .footer__inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .site-nav {
+        justify-content: flex-start;
+      }
+
+      section {
+        padding: 42px 0;
+      }
+
+      .hero-banner {
+        margin-bottom: 34px;
+      }
+
+      .hero-banner img {
+        height: 42vh;
+        min-height: 250px;
+      }
+
+      .card,
+      .cta-panel {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="#top" aria-label="Retour en haut de la page Audio2text">
+        <img class="brand__mark" src="assets/branding/logo_audio2text_tr.png" alt="Logo Audio2text" />
+        <span>Audio2text</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Navigation principale">
+        <a href="#fonctionnalites">Fonctionnalités</a>
+        <a href="#utilisation">Utilisation</a>
+        <a href="#avantages">Avantages</a>
+        <a
+          class="button button--primary"
+          href="https://play.google.com/store/apps/details?id=com.the4runners.audio2text"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Voir sur Google Play
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero-banner" aria-label="Bannière Audio2text">
+      <img src="assets/branding/banniere_audio2text.png" alt="Univers visuel Audio2text" />
+    </section>
+
+    <!-- Introduction plus humaine, sans doublon avec la bannière visuelle. -->
+    <section class="intro">
+      <div class="container">
+        <span class="eyebrow reveal">Application Android</span>
+        <h1 class="reveal reveal--2">Donnez une forme claire à vos enregistrements.</h1>
+        <p class="intro__lead reveal reveal--3">
+          Audio2text est pensé pour les moments où l'on veut récupérer rapidement le contenu d'un audio ou
+          d'une vidéo sans se perdre dans une interface compliquée. Vous chargez votre fichier, vous lancez
+          le traitement, puis vous retrouvez un texte facile à relire, à corriger, à rechercher et à exporter.
+        </p>
+
+        <div class="intro__actions reveal reveal--3">
+          <a
+            class="button button--primary"
+            href="https://play.google.com/store/apps/details?id=com.the4runners.audio2text"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ouvrir la fiche Google Play
+          </a>
+          <a class="button button--secondary" href="mailto:the4runners.app@gmail.com">
+            Contacter le support
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Les fonctionnalités parlent de bénéfices concrets avec un ton plus courant. -->
+    <section id="fonctionnalites">
+      <div class="container">
+        <div class="section-head">
+          <h2>L'essentiel, sans complication</h2>
+          <p>
+            Audio2text ne se limite pas à produire un bloc de texte. L'idée est surtout de vous aider à
+            récupérer un contenu utile, propre et facile à réutiliser ensuite.
+          </p>
+        </div>
+
+        <div class="grid features">
+          <article class="card">
+            <span class="card-kicker">Transcription</span>
+            <h3>Transformez un fichier audio ou vidéo en texte lisible</h3>
+            <p>
+              L'application prend en charge vos médias, lance le traitement et vous restitue un résultat que
+              vous pouvez exploiter sans détour.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-kicker">Traduction</span>
+            <h3>Obtenez aussi un texte traduit quand c'est ce dont vous avez besoin</h3>
+            <p>
+              Si votre objectif n'est pas seulement de retranscrire mais d'obtenir un texte dans une autre
+              langue, une option dédiée est prévue pour ça.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-kicker">Précision</span>
+            <h3>Choisissez seulement la portion qui vous intéresse</h3>
+            <p>
+              Vous pouvez travailler sur un extrait précis plutôt que sur tout le fichier, ce qui est pratique
+              quand seule une partie mérite d'être récupérée.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-kicker">Continuité</span>
+            <h3>Reprenez un traitement arrêté sans tout recommencer</h3>
+            <p>
+              Quand une transcription a déjà avancé, l'application peut relancer le travail proprement au lieu
+              de repartir systématiquement de zéro.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-kicker">Organisation</span>
+            <h3>Retrouvez, renommez, copiez et exportez vos notes</h3>
+            <p>
+              Une fois le texte récupéré, vous pouvez le garder sous la main, le rechercher facilement et
+              l'exporter en TXT ou en SRT selon votre usage.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-kicker">Détail</span>
+            <h3>Affinez la lecture avec le mode mot à mot</h3>
+            <p>
+              Pour certains besoins plus précis, l'application peut aller plus loin et conserver un niveau de
+              détail plus fin dans le résultat.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Le parcours explique simplement le fonctionnement sans jargon. -->
+    <section id="utilisation">
+      <div class="container">
+        <div class="section-head">
+          <h2>Du fichier brut au texte</h2>
+          <p>
+            Tout est pensé pour que l'application fasse le travail technique pendant que vous restez concentré
+            sur le contenu.
+          </p>
+        </div>
+
+        <div class="grid steps">
+          <article class="card">
+            <div class="step-index">1</div>
+            <h3>Choisissez votre fichier</h3>
+            <p>
+              Importez un audio ou une vidéo, puis ajustez si besoin la langue, un extrait précis ou quelques
+              paramètres utiles.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="step-index">2</div>
+            <h3>Lancez le traitement</h3>
+            <p>
+              Audio2text prépare le média, envoie la demande et vous laisse suivre la progression sans compliquer
+              le reste.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="step-index">3</div>
+            <h3>Récupérez un texte exploitable</h3>
+            <p>
+              Vous relisez, vous organisez, vous recherchez un passage précis et vous exportez le résultat dans
+              le format qui vous convient.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cette section met en avant le côté rassurant et utile de l'application. -->
+    <section id="avantages">
+      <div class="container">
+        <div class="section-head">
+          <h2>Ce qui fait la différence</h2>
+          <p>
+            L'objectif n'est pas de faire compliqué. Il s'agit surtout de vous offrir un espace propre pour
+            récupérer la parole sous une forme plus facile à conserver et à retravailler.
+          </p>
+        </div>
+
+        <div class="grid reasons">
+          <article class="card">
+            <span class="card-kicker">Lisibilité</span>
+            <h3>Une interface calme qui laisse de la place au contenu</h3>
+            <p>
+              L'univers visuel reste léger, lumineux et froid pour mettre en valeur le texte plutôt que de vous
+              fatiguer avec trop d'éléments.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-kicker">Souplesse</span>
+            <h3>Un même outil pour plusieurs usages du quotidien</h3>
+            <p>
+              Notes personnelles, extraits à récupérer, sous-titres ou texte de travail : vous adaptez le
+              résultat à ce que vous voulez en faire.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-kicker">Continuité</span>
+            <h3>Vos crédits et vos transcriptions peuvent vous suivre</h3>
+            <p>
+              En vous reconnectant au même compte, vous retrouvez ce qui a été synchronisé, ce qui rend
+              l'application plus rassurante sur la durée.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dernier appel à l'action avec logo transparent et message ajusté selon ta demande. -->
+    <section class="cta" id="telecharger">
+      <div class="container">
+        <article class="cta-panel">
+          <div class="cta-panel__copy">
+            <span class="eyebrow">Découvrir l'application</span>
+            <h2>Une transcription précise, nette et directement exploitable</h2>
+            <p>
+              Audio2text vous accompagne du premier fichier chargé jusqu'au texte final, avec une expérience
+              simple, claire et pensée pour rester agréable à utiliser au quotidien.
+            </p>
+
+            <div class="cta-panel__actions">
+              <a
+                class="button button--primary"
+                href="https://play.google.com/store/apps/details?id=com.the4runners.audio2text"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Télécharger sur Google Play
+              </a>
+              <a
+                class="button button--secondary"
+                href="https://rahalmichel96.github.io/audio2text-privacy/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Politique de confidentialité
+              </a>
+            </div>
+          </div>
+
+          <div class="cta-panel__visual" aria-hidden="true">
+            <img src="assets/branding/logo_audio2text_tr.png" alt="" />
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer léger avec les liens utiles pour la publication GitHub Pages. -->
+  <footer class="footer">
+      <div class="container footer__inner">
+      <p>Audio2text, pour récupérer vos enregistrements sous une forme plus claire et plus simple à exploiter.</p>
+      <div class="footer__links">
+        <a
+          href="https://rahalmichel96.github.io/audio2text-privacy/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Politique de confidentialité
+        </a>
+        <a href="mailto:the4runners.app@gmail.com">the4runners.app@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
