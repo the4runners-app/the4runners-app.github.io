@@ -3,156 +3,474 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Politique de confidentialite - Audio2text</title>
+  <title>Politique de confidentialite | Audio2text</title>
+  <meta
+    name="description"
+    content="Politique de confidentialite de l'application Audio2text."
+  />
   <style>
+    /* Base visuelle alignee sur index.html pour garder une identite homogène sur tout le site. */
     :root {
-      --bg: #f7f7f5;
-      --card: #ffffff;
-      --text: #1f2937;
-      --muted: #4b5563;
-      --line: #e5e7eb;
-      --accent: #0f766e;
+      --bg: #f4f8fc;
+      --surface: rgba(255, 255, 255, 0.92);
+      --surface-strong: #ffffff;
+      --surface-soft: #f8fbff;
+      --text: #10233d;
+      --text-soft: #56708a;
+      --line: #d9e3ee;
+      --accent: #2f6fb3;
+      --accent-deep: #0a3d84;
+      --accent-soft: #dce8f6;
+      --shadow: 0 26px 60px rgba(10, 38, 71, 0.1);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --content-width: 1120px;
+      --reading-width: 920px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
-      background: var(--bg);
+      min-width: 320px;
       color: var(--text);
-      font: 16px/1.6 "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(47, 111, 179, 0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(220, 232, 246, 0.8), transparent 36%),
+        linear-gradient(180deg, #fbfdff 0%, var(--bg) 56%, #eef4fa 100%);
+      font: 16px/1.75 "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
     }
 
-    .wrap {
-      max-width: 900px;
-      margin: 32px auto;
-      padding: 0 16px;
+    /* Texture subtile pour conserver la meme sensation lumineuse que la landing page. */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),
+        radial-gradient(rgba(16, 35, 61, 0.03) 0.8px, transparent 0.8px);
+      background-size: auto, 26px 26px;
+      opacity: 0.5;
     }
 
-    .card {
-      background: var(--card);
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 48px), var(--content-width));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(248, 251, 255, 0.78);
+      border-bottom: 1px solid rgba(142, 166, 193, 0.18);
+    }
+
+    .site-header__inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .brand__mark {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .site-nav a {
+      color: var(--text-soft);
+      font-size: 0.97rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button--primary {
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+      box-shadow: 0 18px 36px rgba(47, 111, 179, 0.22);
+    }
+
+    .button--secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.74);
+      border-color: rgba(142, 166, 193, 0.52);
+    }
+
+    main {
+      padding: 40px 0 64px;
+    }
+
+    /* En-tete de la page privacy plus sobre que la landing, mais avec le meme langage visuel. */
+    .hero {
+      margin-bottom: 28px;
+      padding: 18px 0 10px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(220, 232, 246, 0.76);
+      color: var(--accent-deep);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", "Times New Roman", serif;
+      color: #0f223b;
+      line-height: 1.02;
+    }
+
+    h1 {
+      margin-top: 18px;
+      font-size: clamp(2.9rem, 5.5vw, 4.9rem);
+      max-width: 48rem;
+    }
+
+    h2 {
+      margin-top: 34px;
+      margin-bottom: 14px;
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      max-width: 48rem;
+    }
+
+    p,
+    li {
+      color: var(--text-soft);
+    }
+
+    p {
+      margin: 12px 0 0;
+    }
+
+    ul {
+      margin: 14px 0 0 20px;
+      padding: 0;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .meta {
+      margin-top: 22px;
+      color: var(--text-soft);
+    }
+
+    /* La carte de lecture garde le contenu juridique intact, mais le présente de façon plus premium. */
+    .policy-shell {
+      width: min(100%, var(--reading-width));
+      margin: 0 auto;
+    }
+
+    .policy-card {
+      padding: 34px;
+      border-radius: var(--radius-xl);
       border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 28px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 251, 255, 0.96));
+      box-shadow: var(--shadow);
     }
 
-    h1, h2 { line-height: 1.25; margin: 0 0 12px; }
-    h1 { font-size: 1.8rem; color: var(--accent); }
-    h2 { font-size: 1.1rem; margin-top: 24px; }
-    p { margin: 8px 0; }
-    ul { margin: 8px 0 8px 20px; }
-    .meta { color: var(--muted); margin-bottom: 20px; }
+    .policy-card strong {
+      color: var(--text);
+    }
 
     .contact {
-      border-top: 1px solid var(--line);
-      margin-top: 20px;
-      padding-top: 16px;
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(142, 166, 193, 0.32);
+    }
+
+    /* Bloc de sortie explicite pour orienter vers la suppression de compte sans toucher au corps juridique. */
+    .data-action {
+      margin-top: 28px;
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(220, 232, 246, 0.28));
+    }
+
+    .data-action h3 {
+      font-size: 1.55rem;
+      margin-bottom: 12px;
+    }
+
+    .data-action p {
+      margin-top: 0;
+    }
+
+    .data-action__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .footer {
+      padding: 18px 0 46px;
+    }
+
+    .footer__inner {
+      width: min(calc(100% - 48px), var(--reading-width));
+      margin: 0 auto;
+      padding-top: 22px;
+      border-top: 1px solid rgba(142, 166, 193, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .footer p,
+    .footer__links a {
+      color: var(--text-soft);
+    }
+
+    .footer__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        font-size: 15px;
+      }
+
+      .container,
+      .footer__inner {
+        width: min(calc(100% - 28px), var(--content-width));
+      }
+
+      .site-header__inner,
+      .footer__inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .site-nav {
+        justify-content: flex-start;
+      }
+
+      .hero__panel,
+      .policy-card {
+        padding: 22px;
+      }
+
+      .data-action {
+        padding: 18px;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <article class="card">
-      <h1>Politique de confidentialite - Audio2text</h1>
-      <p class="meta"><strong>Derniere mise a jour :</strong> 1 avril 2026</p>
-      <!-- Fusion du rebase : on conserve les ajouts RGPD les plus complets et les mentions locales utiles. -->
+  <!-- Header harmonise avec la landing page pour garder un vrai petit ecosystème de pages. -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html" aria-label="Retour a l'accueil Audio2text">
+        <img class="brand__mark" src="assets/branding/logo_audio2text_tr.png" alt="Logo Audio2text" />
+        <span>Audio2text</span>
+      </a>
 
-      <h2>1. Identite du responsable de traitement</h2>
-      <p><strong>Application :</strong> Audio2text</p>
-      <p><strong>Package Android :</strong> com.the4runners.audio2text</p>
-      <p><strong>Nom editeur (Play Console) :</strong> The Four Runners</p>
-      <p><strong>Responsable :</strong> Michel RAHAL</p>
-      <p><strong>Contact confidentialite :</strong> rahalmichel@hotmail.fr</p>
+      <nav class="site-nav" aria-label="Navigation secondaire">
+        <a class="button button--secondary" href="delete-account.html">Supprimer mes donnees</a>
+      </nav>
+    </div>
+  </header>
 
-      <h2>2. Objet</h2>
-      <p>La presente politique explique quelles donnees sont traitees dans l'application Audio2text, pour quelles finalites, avec quels services tiers, selon quelles bases legales, pendant combien de temps, et quels sont vos droits.</p>
+  <main>
+    <div class="container">
+      <section class="hero policy-shell">
+        <span class="eyebrow">Politique de confidentialite</span>
+        <h1>Vos donnees, expliquees clairement.</h1>
+        <p class="meta"><strong>Derniere mise a jour :</strong> 1 avril 2026</p>
+      </section>
 
-      <h2>3. Donnees traitees</h2>
-      <p><strong>3.1 Donnees traitees localement sur votre appareil</strong></p>
-      <ul>
-        <li>Fichiers audio/video selectionnes par l'utilisateur.</li>
-        <li>Cache local des transcriptions et des notes synchronisees avec votre compte.</li>
-        <li>Notes, segments et horodatages associes.</li>
-        <li>Preferences de l'application (langue, options de transcription, etat de traitement).</li>
-        <li>Informations locales liees au statut premium.</li>
-        <li>Cache local des informations de compte et du solde de credits.</li>
-      </ul>
+      <!-- Le contenu legal reste conserve tel quel, seule la presentation evolue. -->
+      <section class="policy-shell">
+        <article class="policy-card">
+          <!-- Fusion du rebase : on conserve les ajouts RGPD les plus complets et les mentions locales utiles. -->
 
-      <p><strong>3.2 Donnees traitees via nos services cloud pour le compte, les credits et la transcription</strong></p>
-      <ul>
-        <li>Donnees de compte : adresse e-mail, prenom, nom, date de naissance, fournisseur de connexion, usages declares de l'application.</li>
-        <li>Wallet de credits associe au compte : formule, credits inclus, credits supplementaires, etat de synchronisation.</li>
-        <li>Transcriptions synchronisees : titre, contenu, statut, segments, horodatages et mots horodates lorsque disponibles.</li>
-        <li>Fichier audio/video selectionne par l'utilisateur, converti temporairement en WAV pour traitement.</li>
-        <li>Identifiant technique de transcription, nom du fichier, statut du job, progression, langue detectee, texte partiel et texte final.</li>
-        <li>Segments et horodatages de mots lorsque l'option correspondante est activee.</li>
-        <li>Parametres de transcription fournis par l'utilisateur, tels que la langue, l'option de traduction, le prompt initial si renseigne, et l'option mot a mot.</li>
-        <li>Identifiant Firebase technique necessaire a l'authentification, a la restauration du compte et a la securisation du service.</li>
-      </ul>
+          <h2>1. Identite du responsable de traitement</h2>
+          <p><strong>Application :</strong> Audio2text</p>
+          <p><strong>Package Android :</strong> com.the4runners.audio2text</p>
+          <p><strong>Nom editeur (Play Console) :</strong> The Four Runners</p>
+          <p><strong>Responsable :</strong> Michel RAHAL</p>
+          <p><strong>Contact confidentialite :</strong> rahalmichel@hotmail.fr</p>
 
-      <p><strong>3.3 Donnees pouvant etre transmises a des services tiers</strong></p>
-      <ul>
-        <li><strong>Google Cloud / Firebase</strong> : authentification, stockage temporaire, stockage des profils et transcriptions synchronisees, orchestration, traitement des transcriptions, metadonnees techniques et infrastructure serveur.</li>
-        <li><strong>Google AdMob</strong> : affichage publicitaire, donnees techniques, identifiants publicitaires et signaux publicitaires selon les regles Google.</li>
-        <li><strong>Firebase Analytics</strong> : donnees d'usage et statistiques techniques.</li>
-        <li><strong>Google Play Billing / Google Play Developer API</strong> : gestion, verification, restauration et controle des achats premium.</li>
-      </ul>
+          <h2>2. Objet</h2>
+          <p>La presente politique explique quelles donnees sont traitees dans l'application Audio2text, pour quelles finalites, avec quels services tiers, selon quelles bases legales, pendant combien de temps, et quels sont vos droits.</p>
 
-      <h2>4. Finalites du traitement</h2>
-      <ul>
-        <li>Fournir la transcription audio/video et les fonctionnalites de notes/export.</li>
-        <li>Permettre la creation et la gestion d'un compte utilisateur, la restauration du solde de credits et des transcriptions apres reinstallation, ainsi que l'edition ou la suppression du compte.</li>
-        <li>Permettre l'envoi au service cloud, le traitement, l'affichage de la progression, l'arret et la reprise d'une transcription.</li>
-        <li>Permettre l'achat premium, la restauration et la verification d'achat.</li>
-        <li>Permettre la synchronisation des credits et transcriptions entre le cloud et l'application.</li>
-        <li>Compiler des statistiques internes sur les usages declares de l'application.</li>
-        <li>Afficher des publicites dans la version non premium.</li>
-        <li>Mesurer l'usage, ameliorer la stabilite, la performance et la qualite du service.</li>
-        <li>Securiser le service et prevenir les abus, erreurs techniques et fraudes.</li>
-      </ul>
+          <h2>3. Donnees traitees</h2>
+          <p><strong>3.1 Donnees traitees localement sur votre appareil</strong></p>
+          <ul>
+            <li>Fichiers audio/video selectionnes par l'utilisateur.</li>
+            <li>Cache local des transcriptions et des notes synchronisees avec votre compte.</li>
+            <li>Notes, segments et horodatages associes.</li>
+            <li>Preferences de l'application (langue, options de transcription, etat de traitement).</li>
+            <li>Informations locales liees au statut premium.</li>
+            <li>Cache local des informations de compte et du solde de credits.</li>
+          </ul>
 
-      <h2>5. Bases legales (RGPD)</h2>
-      <p>Selon les cas, les traitements reposent sur l'execution du service demande par l'utilisateur, l'interet legitime de l'editeur (securite, prevention de fraude, amelioration du service), le respect d'obligations legales, et le consentement lorsque requis.</p>
+          <p><strong>3.2 Donnees traitees via nos services cloud pour le compte, les credits et la transcription</strong></p>
+          <ul>
+            <li>Donnees de compte : adresse e-mail, prenom, nom, date de naissance, fournisseur de connexion, usages declares de l'application.</li>
+            <li>Wallet de credits associe au compte : formule, credits inclus, credits supplementaires, etat de synchronisation.</li>
+            <li>Transcriptions synchronisees : titre, contenu, statut, segments, horodatages et mots horodates lorsque disponibles.</li>
+            <li>Fichier audio/video selectionne par l'utilisateur, converti temporairement en WAV pour traitement.</li>
+            <li>Identifiant technique de transcription, nom du fichier, statut du job, progression, langue detectee, texte partiel et texte final.</li>
+            <li>Segments et horodatages de mots lorsque l'option correspondante est activee.</li>
+            <li>Parametres de transcription fournis par l'utilisateur, tels que la langue, l'option de traduction, le prompt initial si renseigne, et l'option mot a mot.</li>
+            <li>Identifiant Firebase technique necessaire a l'authentification, a la restauration du compte et a la securisation du service.</li>
+          </ul>
 
-      <h2>6. Destinataires</h2>
-      <p>Les donnees sont accessibles uniquement a l'editeur, dans la limite necessaire, ainsi qu'aux sous-traitants techniques impliques dans le fonctionnement du service, notamment Google Firebase, Google Cloud, Google Play et AdMob. Les usages declares peuvent etre consultes par l'editeur dans un espace d'administration interne afin d'etablir des statistiques d'usage. Aucune vente de donnees personnelles n'est effectuee.</p>
+          <p><strong>3.3 Donnees pouvant etre transmises a des services tiers</strong></p>
+          <ul>
+            <li><strong>Google Cloud / Firebase</strong> : authentification, stockage temporaire, stockage des profils et transcriptions synchronisees, orchestration, traitement des transcriptions, metadonnees techniques et infrastructure serveur.</li>
+            <li><strong>Google AdMob</strong> : affichage publicitaire, donnees techniques, identifiants publicitaires et signaux publicitaires selon les regles Google.</li>
+            <li><strong>Firebase Analytics</strong> : donnees d'usage et statistiques techniques.</li>
+            <li><strong>Google Play Billing / Google Play Developer API</strong> : gestion, verification, restauration et controle des achats premium.</li>
+          </ul>
 
-      <h2>7. Transferts hors UE</h2>
-      <p>Certains traitements peuvent etre realises sur des infrastructures techniques operes par Google ou ses entites associees, y compris en dehors de l'Union europeenne, selon les mecanismes juridiques et contractuels applicables a ces prestataires.</p>
+          <h2>4. Finalites du traitement</h2>
+          <ul>
+            <li>Fournir la transcription audio/video et les fonctionnalites de notes/export.</li>
+            <li>Permettre la creation et la gestion d'un compte utilisateur, la restauration du solde de credits et des transcriptions apres reinstallation, ainsi que l'edition ou la suppression du compte.</li>
+            <li>Permettre l'envoi au service cloud, le traitement, l'affichage de la progression, l'arret et la reprise d'une transcription.</li>
+            <li>Permettre l'achat premium, la restauration et la verification d'achat.</li>
+            <li>Permettre la synchronisation des credits et transcriptions entre le cloud et l'application.</li>
+            <li>Compiler des statistiques internes sur les usages declares de l'application.</li>
+            <li>Afficher des publicites dans la version non premium.</li>
+            <li>Mesurer l'usage, ameliorer la stabilite, la performance et la qualite du service.</li>
+            <li>Securiser le service et prevenir les abus, erreurs techniques et fraudes.</li>
+          </ul>
 
-      <h2>8. Duree de conservation</h2>
-      <ul>
-        <li>Donnees locales : conservees sur l'appareil jusqu'a suppression par l'utilisateur ou desinstallation.</li>
-        <li>Fichiers audio/WAV et artefacts techniques de transcription stockes dans le cloud : conserves le temps necessaire au traitement, puis supprimes lorsque la transcription est marquee comme <strong>COMPLETED</strong>.</li>
-        <li>Profils de compte, wallet de credits et transcriptions synchronisees : conserves tant que le compte existe ou jusqu'a suppression manuelle par l'utilisateur.</li>
-        <li>Metadonnees de job de transcription : conservees tant que necessaire pour permettre le suivi, l'arret, la reprise ou la recuperation finale du resultat. Elles sont supprimees apres finalisation complete du traitement.</li>
-        <li>Journaux techniques et traces d'execution : conserves temporairement a des fins de diagnostic, puis ecrases lors d'une nouvelle transcription ou supprimes apres quelques heures d'inactivite, selon les besoins techniques raisonnables du service.</li>
-        <li>Donnees liees aux achats : conservees pendant la duree necessaire a la verification, a la gestion du premium, a la prevention de fraude et au respect des obligations legales.</li>
-        <li>Demandes de suppression de compte et demandes de remboursement associees : conservees le temps necessaire au traitement administratif et legal.</li>
-        <li>Donnees des services tiers : selon leurs propres politiques de conservation.</li>
-      </ul>
+          <h2>5. Bases legales (RGPD)</h2>
+          <p>Selon les cas, les traitements reposent sur l'execution du service demande par l'utilisateur, l'interet legitime de l'editeur (securite, prevention de fraude, amelioration du service), le respect d'obligations legales, et le consentement lorsque requis.</p>
 
-      <h2>9. Securite</h2>
-      <p>Les echanges reseau necessaires utilisent des connexions chiffrees (HTTPS). Des mesures techniques raisonnables de securite sont appliquees pour proteger les donnees traitees localement et via les services cloud.</p>
+          <h2>6. Destinataires</h2>
+          <p>Les donnees sont accessibles uniquement a l'editeur, dans la limite necessaire, ainsi qu'aux sous-traitants techniques impliques dans le fonctionnement du service, notamment Google Firebase, Google Cloud, Google Play et AdMob. Les usages declares peuvent etre consultes par l'editeur dans un espace d'administration interne afin d'etablir des statistiques d'usage. Aucune vente de donnees personnelles n'est effectuee.</p>
 
-      <h2>10. Vos droits</h2>
-      <p>Conformement au RGPD et a la loi applicable, vous pouvez demander l'acces, la rectification, l'effacement, la limitation, l'opposition et, lorsque applicable, la portabilite de vos donnees.</p>
-      <p>Pour exercer vos droits : <strong>rahalmichel@hotmail.fr</strong></p>
-      <p>Vous pouvez egalement supprimer votre compte depuis l'application. Cette action efface les donnees associees stockees dans le cloud et peut declencher une demande de remboursement des credits restants selon les conditions annoncees au moment de la suppression.</p>
-      <p>Vous pouvez supprimer les donnees locales via les reglages Android (effacer les donnees) ou en desinstallant l'application, mais la suppression du compte reste necessaire pour effacer les donnees synchronisees dans le cloud.</p>
+          <h2>7. Transferts hors UE</h2>
+          <p>Certains traitements peuvent etre realises sur des infrastructures techniques operes par Google ou ses entites associees, y compris en dehors de l'Union europeenne, selon les mecanismes juridiques et contractuels applicables a ces prestataires.</p>
 
-      <h2>11. Enfants</h2>
-      <p>Audio2text n'est pas destinee aux enfants de moins de 13 ans.</p>
+          <h2>8. Duree de conservation</h2>
+          <ul>
+            <li>Donnees locales : conservees sur l'appareil jusqu'a suppression par l'utilisateur ou desinstallation.</li>
+            <li>Fichiers audio/WAV et artefacts techniques de transcription stockes dans le cloud : conserves le temps necessaire au traitement, puis supprimes lorsque la transcription est marquee comme <strong>COMPLETED</strong>.</li>
+            <li>Profils de compte, wallet de credits et transcriptions synchronisees : conserves tant que le compte existe ou jusqu'a suppression manuelle par l'utilisateur.</li>
+            <li>Metadonnees de job de transcription : conservees tant que necessaire pour permettre le suivi, l'arret, la reprise ou la recuperation finale du resultat. Elles sont supprimees apres finalisation complete du traitement.</li>
+            <li>Journaux techniques et traces d'execution : conserves temporairement a des fins de diagnostic, puis ecrases lors d'une nouvelle transcription ou supprimes apres quelques heures d'inactivite, selon les besoins techniques raisonnables du service.</li>
+            <li>Donnees liees aux achats : conservees pendant la duree necessaire a la verification, a la gestion du premium, a la prevention de fraude et au respect des obligations legales.</li>
+            <li>Demandes de suppression de compte et demandes de remboursement associees : conservees le temps necessaire au traitement administratif et legal.</li>
+            <li>Donnees des services tiers : selon leurs propres politiques de conservation.</li>
+          </ul>
 
-      <h2>12. Modifications de la politique</h2>
-      <p>Cette politique peut evoluer. Toute mise a jour sera publiee sur cette page avec une nouvelle date de mise a jour.</p>
+          <h2>9. Securite</h2>
+          <p>Les echanges reseau necessaires utilisent des connexions chiffrees (HTTPS). Des mesures techniques raisonnables de securite sont appliquees pour proteger les donnees traitees localement et via les services cloud.</p>
 
-      <div class="contact">
-        <h2>13. Contact</h2>
-        <p>Michel RAHAL</p>
-        <p>rahalmichel@hotmail.fr</p>
-      </div>
-    </article>
+          <h2>10. Vos droits</h2>
+          <p>Conformement au RGPD et a la loi applicable, vous pouvez demander l'acces, la rectification, l'effacement, la limitation, l'opposition et, lorsque applicable, la portabilite de vos donnees.</p>
+          <p>Pour exercer vos droits : <strong>rahalmichel@hotmail.fr</strong></p>
+          <p>Vous pouvez egalement supprimer votre compte depuis l'application. Cette action efface les donnees associees stockees dans le cloud et peut declencher une demande de remboursement des credits restants selon les conditions annoncees au moment de la suppression.</p>
+          <p>Vous pouvez supprimer les donnees locales via les reglages Android (effacer les donnees) ou en desinstallant l'application, mais la suppression du compte reste necessaire pour effacer les donnees synchronisees dans le cloud.</p>
+
+          <h2>11. Enfants</h2>
+          <p>Audio2text n'est pas destinee aux enfants de moins de 13 ans.</p>
+
+          <h2>12. Modifications de la politique</h2>
+          <p>Cette politique peut evoluer. Toute mise a jour sera publiee sur cette page avec une nouvelle date de mise a jour.</p>
+
+          <div class="contact">
+            <h2>13. Contact</h2>
+            <p>Michel RAHAL</p>
+            <p>rahalmichel@hotmail.fr</p>
+          </div>
+
+          <div class="data-action">
+            <h3>Supprimer mes donnees</h3>
+            <p>Si vous souhaitez demander la suppression de votre compte et des donnees associees, vous pouvez utiliser la page dediee ci-dessous.</p>
+            <div class="data-action__actions">
+              <a class="button button--primary" href="delete-account.html">Supprimer mes donnees</a>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
   </main>
+
+  <!-- Footer minimal pour garder les liens vraiment utiles sur cette page legale. -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p>Audio2text, pour rendre vos donnees plus lisibles et votre parcours plus clair.</p>
+      <div class="footer__links">
+        <a href="mailto:rahalmichel@hotmail.fr">rahalmichel@hotmail.fr</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
