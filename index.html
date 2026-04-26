@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Audio2text | Donnez une forme claire à vos enregistrements</title>
+  <title>Audio2text | Android </title>
   <meta
     name="description"
     content="Audio2text vous aide à transformer vos fichiers audio et vidéo en texte clair, précis et facile à réutiliser depuis votre appareil Android."
   />
+  <link rel="icon" type="image/png" href="assets/branding/logo_audio2text_tr.png" />
   <style>
     /* Palette froide et lumineuse alignée avec l'identité visuelle de l'application. */
     :root {
@@ -112,6 +113,13 @@
       object-fit: contain;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-left: auto;
+    }
+
     .site-nav {
       display: flex;
       align-items: center;
@@ -123,6 +131,54 @@
     .site-nav a {
       color: var(--text-soft);
       font-size: 0.97rem;
+    }
+
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border: 1px solid rgba(142, 166, 193, 0.4);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .menu-toggle__icon,
+    .menu-toggle__icon::before,
+    .menu-toggle__icon::after {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 160ms ease, opacity 160ms ease;
+      content: "";
+    }
+
+    .menu-toggle__icon::before {
+      transform: translateY(-6px);
+    }
+
+    .menu-toggle__icon::after {
+      transform: translateY(4px);
+    }
+
+    /* Le lien store s'integre directement dans la barre sans cartouche blanche. */
+    .store-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      padding: 0;
+    }
+
+    .store-badge img {
+      width: 27px;
+      height: 27px;
+      object-fit: contain;
     }
 
     .button {
@@ -164,6 +220,10 @@
 
     .site-nav .button--secondary {
       color: var(--text);
+    }
+
+    .site-nav .store-badge {
+      color: inherit;
     }
 
     main {
@@ -460,6 +520,52 @@
       }
     }
 
+    @media (max-width: 860px) {
+      .site-header__inner {
+        min-height: auto;
+        flex-wrap: wrap;
+        padding: 14px 0;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .header-actions {
+        width: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        margin-left: auto;
+      }
+
+      .site-nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding-top: 14px;
+        order: 3;
+        flex-basis: 100%;
+      }
+
+      .site-nav.is-open {
+        display: flex;
+      }
+
+      .site-nav a,
+      .site-nav .store-badge {
+        justify-content: flex-start;
+      }
+
+      .site-nav a {
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(142, 166, 193, 0.26);
+      }
+    }
+
     @media (max-width: 720px) {
       body {
         font-size: 15px;
@@ -467,16 +573,6 @@
 
       .container {
         width: min(calc(100% - 28px), var(--content-width));
-      }
-
-      .site-header__inner,
-      .footer__inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .site-nav {
-        justify-content: flex-start;
       }
 
       section {
@@ -507,18 +603,32 @@
         <span>Audio2text</span>
       </a>
 
-      <nav class="site-nav" aria-label="Navigation principale">
-        <a href="#fonctionnalites">Fonctionnalités</a>
-        <a href="#utilisation">Utilisation</a>
-        <a href="#avantages">Avantages</a>
+      <div class="header-actions">
         <a
-          class="button button--primary"
+          class="store-badge"
           href="https://play.google.com/store/apps/details?id=com.the4runners.audio2text"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Voir Audio2text sur Google Play"
         >
-          Voir sur Google Play
+          <img src="assets/play_logo.png" alt="Google Play" />
         </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Ouvrir le menu"
+        >
+          <span class="menu-toggle__icon"></span>
+        </button>
+      </div>
+
+      <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+        <a href="#fonctionnalites">Fonctionnalités</a>
+        <a href="#utilisation">Utilisation</a>
+        <a href="#avantages">Avantages</a>
       </nav>
     </div>
   </header>
@@ -532,11 +642,12 @@
     <section class="intro">
       <div class="container">
         <span class="eyebrow reveal">Application Android</span>
-        <h1 class="reveal reveal--2">Donnez une forme claire à vos enregistrements.</h1>
+        <h1 class="reveal reveal--2">Laissez-vous porter par la force de la transcription IA</h1>
         <p class="intro__lead reveal reveal--3">
-          Audio2text est pensé pour les moments où l'on veut récupérer rapidement le contenu d'un audio ou
-          d'une vidéo sans se perdre dans une interface compliquée. Vous chargez votre fichier, vous lancez
-          le traitement, puis vous retrouvez un texte facile à relire, à corriger, à rechercher et à exporter.
+          Audio2text est pensé pour les étudiants, les professionnels et les créateurs de contenu 
+          qui ont besoin d'accéder et rechercher dans leurs enregistrements audio ou vidéo. 
+          Il vous suffit de charger votre fichier pour que la magie opère : un texte fluide et précis
+          que vous pourrez ensuite éditer, partager ou transformer en sous-titres.
         </p>
 
         <div class="intro__actions reveal reveal--3">
@@ -559,10 +670,10 @@
     <section id="fonctionnalites">
       <div class="container">
         <div class="section-head">
-          <h2>L'essentiel, sans complication</h2>
+          <h2>L'essentiel dans une application fiable et robuste</h2>
           <p>
-            Audio2text ne se limite pas à produire un bloc de texte. L'idée est surtout de vous aider à
-            récupérer un contenu utile, propre et facile à réutiliser ensuite.
+            Audio2text ne se limite pas à produire un bloc de texte. L'idée est de vous aider à
+            récupérer du contenu utile, propre et facile à exploiter.
           </p>
         </div>
 
@@ -578,7 +689,7 @@
 
           <article class="card">
             <span class="card-kicker">Traduction</span>
-            <h3>Obtenez aussi un texte traduit quand c'est ce dont vous avez besoin</h3>
+            <h3>Obtenez du texte traduit de n'importe quelle langue vers l'anglais</h3>
             <p>
               Si votre objectif n'est pas seulement de retranscrire mais d'obtenir un texte dans une autre
               langue, une option dédiée est prévue pour ça.
@@ -587,7 +698,7 @@
 
           <article class="card">
             <span class="card-kicker">Précision</span>
-            <h3>Choisissez seulement la portion qui vous intéresse</h3>
+            <h3>Choisissez seulement la portion audio qui vous intéresse</h3>
             <p>
               Vous pouvez travailler sur un extrait précis plutôt que sur tout le fichier, ce qui est pratique
               quand seule une partie mérite d'être récupérée.
@@ -595,11 +706,11 @@
           </article>
 
           <article class="card">
-            <span class="card-kicker">Continuité</span>
-            <h3>Reprenez un traitement arrêté sans tout recommencer</h3>
+            <span class="card-kicker">Parallélisme</span>
+            <h3>Lancez plusieurs transcriptions simultanément</h3>
             <p>
-              Quand une transcription a déjà avancé, l'application peut relancer le travail proprement au lieu
-              de repartir systématiquement de zéro.
+              Quand une transcription est en cours, vous pouvez déjà préparer la suivante pour gagner du temps
+              et éviter les attentes inutiles.
             </p>
           </article>
 
@@ -616,8 +727,8 @@
             <span class="card-kicker">Détail</span>
             <h3>Affinez la lecture avec le mode mot à mot</h3>
             <p>
-              Pour certains besoins plus précis, l'application peut aller plus loin et conserver un niveau de
-              détail plus fin dans le résultat.
+              Pour certains besoins plus précis, l'application peut aller plus loin et vous permettre
+              d'accéder à une lecture mot à mot de votre média, avec les horodatages associés.
             </p>
           </article>
         </div>
@@ -672,18 +783,18 @@
         <div class="section-head">
           <h2>Ce qui fait la différence</h2>
           <p>
-            L'objectif n'est pas de faire compliqué. Il s'agit surtout de vous offrir un espace propre pour
-            récupérer la parole sous une forme plus facile à conserver et à retravailler.
+            Cette application a été pensé pour vous ! Elle vise à vous accompagner dans la durée, 
+            avec une expérience agréable et des résultats fiables.
           </p>
         </div>
 
         <div class="grid reasons">
           <article class="card">
             <span class="card-kicker">Lisibilité</span>
-            <h3>Une interface calme qui laisse de la place au contenu</h3>
+            <h3>Une interface simple qui vous libère l'esprit</h3>
             <p>
-              L'univers visuel reste léger, lumineux et froid pour mettre en valeur le texte plutôt que de vous
-              fatiguer avec trop d'éléments.
+              L'univers visuel reste léger, lumineux et épuré pour mettre en valeur le texte 
+              et éviter les distractions inutiles.
             </p>
           </article>
 
@@ -701,7 +812,7 @@
             <h3>Vos crédits et vos transcriptions peuvent vous suivre</h3>
             <p>
               En vous reconnectant au même compte, vous retrouvez ce qui a été synchronisé, ce qui rend
-              l'application plus rassurante sur la durée.
+              l'application plus fiable sur la durée.
             </p>
           </article>
         </div>
@@ -751,7 +862,7 @@
   <!-- Footer léger avec les liens utiles pour la publication GitHub Pages. -->
   <footer class="footer">
       <div class="container footer__inner">
-      <p>Audio2text, pour récupérer vos enregistrements sous une forme plus claire et plus simple à exploiter.</p>
+      <p>Audio2text, pour que vos enregistrements prennent forme immédiatement !</p>
       <div class="footer__links">
         <a
           href="privacy.html"
@@ -764,5 +875,18 @@
       </div>
     </div>
   </footer>
+  <script>
+    // Le header bascule sur un vrai menu mobile pour éviter que la navigation casse sous le logo.
+    (() => {
+      const toggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector("#site-nav");
+      if (!toggle || !nav) return;
+
+      toggle.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+      });
+    })();
+  </script>
 </body>
 </html>

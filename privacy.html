@@ -8,6 +8,7 @@
     name="description"
     content="Politique de confidentialite de l'application Audio2text."
   />
+  <link rel="icon" type="image/png" href="assets/branding/logo_audio2text_tr.png" />
   <style>
     /* Base visuelle alignee sur index.html pour garder une identite homogène sur tout le site. */
     :root {
@@ -121,6 +122,39 @@
     .site-nav a {
       color: var(--text-soft);
       font-size: 0.97rem;
+    }
+
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border: 1px solid rgba(142, 166, 193, 0.4);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .menu-toggle__icon,
+    .menu-toggle__icon::before,
+    .menu-toggle__icon::after {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 160ms ease, opacity 160ms ease;
+      content: "";
+    }
+
+    .menu-toggle__icon::before {
+      transform: translateY(-6px);
+    }
+
+    .menu-toggle__icon::after {
+      transform: translateY(4px);
     }
 
     .button {
@@ -296,6 +330,40 @@
       gap: 18px;
     }
 
+    @media (max-width: 860px) {
+      .site-header__inner {
+        min-height: auto;
+        flex-wrap: wrap;
+        padding: 14px 0;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        margin-left: auto;
+      }
+
+      .site-nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding-top: 14px;
+      }
+
+      .site-nav.is-open {
+        display: flex;
+      }
+
+      .site-nav a {
+        justify-content: flex-start;
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(142, 166, 193, 0.26);
+      }
+    }
+
     @media (max-width: 720px) {
       body {
         font-size: 15px;
@@ -306,14 +374,9 @@
         width: min(calc(100% - 28px), var(--content-width));
       }
 
-      .site-header__inner,
       .footer__inner {
         flex-direction: column;
         align-items: flex-start;
-      }
-
-      .site-nav {
-        justify-content: flex-start;
       }
 
       .hero__panel,
@@ -336,7 +399,17 @@
         <span>Audio2text</span>
       </a>
 
-      <nav class="site-nav" aria-label="Navigation secondaire">
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Ouvrir le menu"
+      >
+        <span class="menu-toggle__icon"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Navigation secondaire">
         <a class="button button--secondary" href="delete-account.html">Supprimer mes donnees</a>
       </nav>
     </div>
@@ -346,8 +419,8 @@
     <div class="container">
       <section class="hero policy-shell">
         <span class="eyebrow">Politique de confidentialite</span>
-        <h1>Vos donnees, expliquees clairement.</h1>
-        <p class="meta"><strong>Derniere mise a jour :</strong> 1 avril 2026</p>
+        <h1>Vos donnees, expliquées clairement</h1>
+        <p class="meta"><strong>Dernière mise a jour :</strong> 1 avril 2026</p>
       </section>
 
       <!-- Le contenu legal reste conserve tel quel, seule la presentation evolue. -->
@@ -472,5 +545,18 @@
       </div>
     </div>
   </footer>
+  <script>
+    // La version mobile replie la navigation pour eviter que le header se casse sur petites largeurs.
+    (() => {
+      const toggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector("#site-nav");
+      if (!toggle || !nav) return;
+
+      toggle.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+      });
+    })();
+  </script>
 </body>
 </html>
