@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://the4runners-app.github.io/sitemap.xml
+Sitemap: https://the4runners.fr/sitemap.xml
