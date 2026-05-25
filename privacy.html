@@ -430,7 +430,7 @@
       <section class="hero policy-shell">
         <span class="eyebrow">Politique de confidentialite</span>
         <h1>Vos donnees, expliquées clairement</h1>
-        <p class="meta"><strong>Dernière mise a jour :</strong> 1 avril 2026</p>
+        <p class="meta"><strong>Dernière mise a jour :</strong> 25 mai 2026</p>
       </section>
 
       <!-- Le contenu legal reste conserve tel quel, seule la presentation evolue. -->
@@ -463,17 +463,18 @@
           <ul>
             <li>Donnees de compte : adresse e-mail, prenom, nom, date de naissance, fournisseur de connexion, usages declares de l'application.</li>
             <li>Wallet de credits associe au compte : formule, credits inclus, credits supplementaires, etat de synchronisation.</li>
-            <li>Transcriptions synchronisees : titre, contenu, statut, segments, horodatages et mots horodates lorsque disponibles.</li>
+            <li>Transcriptions synchronisees : titre, contenu, statut, segments, horodatages et reperes audio approximatifs lorsque disponibles.</li>
             <li>Fichier audio/video selectionne par l'utilisateur, converti temporairement en WAV pour traitement.</li>
             <li>Identifiant technique de transcription, nom du fichier, statut du job, progression, langue detectee, texte partiel et texte final.</li>
-            <li>Segments et horodatages de mots lorsque l'option correspondante est activee.</li>
-            <li>Parametres de transcription fournis par l'utilisateur, tels que la langue, l'option de traduction, le prompt initial si renseigne, et l'option mot a mot.</li>
+            <li>Segments de transcription et reperes audio approximatifs lorsque l'option correspondante est activee.</li>
+            <li>Parametres de transcription fournis par l'utilisateur, tels que la langue, le prompt initial si renseigne, la plage audio demandee et l'option de reperes audio.</li>
             <li>Identifiant Firebase technique necessaire a l'authentification, a la restauration du compte et a la securisation du service.</li>
           </ul>
 
           <p><strong>3.3 Donnees pouvant etre transmises a des services tiers</strong></p>
           <ul>
-            <li><strong>Google Cloud / Firebase</strong> : authentification, stockage temporaire, stockage des profils et transcriptions synchronisees, orchestration, traitement des transcriptions, metadonnees techniques et infrastructure serveur.</li>
+            <li><strong>Google Cloud / Firebase</strong> : authentification, stockage temporaire, stockage des profils et transcriptions synchronisees, orchestration, metadonnees techniques et infrastructure serveur.</li>
+            <li><strong>OpenAI API</strong> : traitement technique des fichiers audio transmis par notre serveur cloud afin de produire la transcription. Les donnees envoyees a l'API OpenAI ne sont pas utilisees pour entrainer les modeles d'OpenAI sauf activation volontaire d'un partage de donnees par l'editeur.</li>
             <li><strong>Google AdMob</strong> : affichage publicitaire, donnees techniques, identifiants publicitaires et signaux publicitaires selon les regles Google.</li>
             <li><strong>Firebase Analytics</strong> : donnees d'usage et statistiques techniques.</li>
             <li><strong>Google Play Billing / Google Play Developer API</strong> : gestion, verification, restauration et controle des achats premium.</li>
@@ -496,21 +497,21 @@
           <p>Selon les cas, les traitements reposent sur l'execution du service demande par l'utilisateur, l'interet legitime de l'editeur (securite, prevention de fraude, amelioration du service), le respect d'obligations legales, et le consentement lorsque requis.</p>
 
           <h2>6. Destinataires</h2>
-          <p>Les donnees sont accessibles uniquement a l'editeur, dans la limite necessaire, ainsi qu'aux sous-traitants techniques impliques dans le fonctionnement du service, notamment Google Firebase, Google Cloud, Google Play et AdMob. Les usages declares peuvent etre consultes par l'editeur dans un espace d'administration interne afin d'etablir des statistiques d'usage. Aucune vente de donnees personnelles n'est effectuee.</p>
+          <p>Les donnees sont accessibles uniquement a l'editeur, dans la limite necessaire, ainsi qu'aux sous-traitants techniques impliques dans le fonctionnement du service, notamment Google Firebase, Google Cloud, OpenAI, Google Play et AdMob. Les usages declares peuvent etre consultes par l'editeur dans un espace d'administration interne afin d'etablir des statistiques d'usage. Aucune vente de donnees personnelles n'est effectuee.</p>
 
           <h2>7. Transferts hors UE</h2>
-          <p>Certains traitements peuvent etre realises sur des infrastructures techniques operes par Google ou ses entites associees, y compris en dehors de l'Union europeenne, selon les mecanismes juridiques et contractuels applicables a ces prestataires.</p>
+          <p>Certains traitements peuvent etre realises sur des infrastructures techniques operees par Google, OpenAI ou leurs entites associees, y compris en dehors de l'Union europeenne, selon les mecanismes juridiques et contractuels applicables a ces prestataires.</p>
 
           <h2>8. Duree de conservation</h2>
           <ul>
             <li>Donnees locales : conservees sur l'appareil jusqu'a suppression par l'utilisateur ou desinstallation.</li>
-            <li>Fichiers audio/WAV et artefacts techniques de transcription stockes dans le cloud : conserves le temps necessaire au traitement, puis supprimes lorsque la transcription est marquee comme <strong>COMPLETED</strong>.</li>
+            <li>Fichiers audio/WAV et artefacts techniques de transcription stockes dans notre cloud : conserves le temps necessaire au traitement, puis supprimes lorsque la transcription est marquee comme <strong>COMPLETED</strong>.</li>
             <li>Profils de compte, wallet de credits et transcriptions synchronisees : conserves tant que le compte existe ou jusqu'a suppression manuelle par l'utilisateur.</li>
             <li>Metadonnees de job de transcription : conservees tant que necessaire pour permettre le suivi, l'arret, la reprise ou la recuperation finale du resultat. Elles sont supprimees apres finalisation complete du traitement.</li>
             <li>Journaux techniques et traces d'execution : conserves temporairement a des fins de diagnostic, puis ecrases lors d'une nouvelle transcription ou supprimes apres quelques heures d'inactivite, selon les besoins techniques raisonnables du service.</li>
             <li>Donnees liees aux achats : conservees pendant la duree necessaire a la verification, a la gestion du premium, a la prevention de fraude et au respect des obligations legales.</li>
             <li>Demandes de suppression de compte et demandes de remboursement associees : conservees le temps necessaire au traitement administratif et legal.</li>
-            <li>Donnees des services tiers : selon leurs propres politiques de conservation.</li>
+            <li>Donnees traitees par les services tiers, dont OpenAI : selon leurs propres politiques de conservation et de securite applicables aux services API utilises.</li>
           </ul>
 
           <h2>9. Securite</h2>
