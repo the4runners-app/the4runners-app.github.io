@@ -6,7 +6,7 @@
   <title>Audio2text | Transcription audio et vidéo en texte</title>
   <meta
     name="description"
-    content="Transcrivez vos fichiers audio et vidéo sur Android avec Audio2text : texte brut conservé, lecteur audio intégré, recherche, export TXT/SRT et IA premium."
+    content="Audio2Text transcrit vos fichiers audio et vidéo sur Android : Whisper, post-traitement Qwen3 Premium, recherche, lecture, export TXT/SRT et options de sauvegarde."
   />
   <meta name="application-name" content="Audio2text" />
   <meta name="theme-color" content="#f4f8fc" />
@@ -20,7 +20,7 @@
   <meta property="og:title" content="Audio2text | Transcription audio et vidéo en texte" />
   <meta
     property="og:description"
-    content="Transcrivez vos audios et vidéos en texte exploitable depuis Android, relisez l'audio dans la note, puis exportez vos textes en TXT ou SRT."
+    content="Transcrivez vos fichiers audio et vidéo avec Audio2Text, améliorez vos notes avec Qwen3 Premium et conservez vos enregistrements dans l’emplacement de votre choix."
   />
   <meta property="og:url" content="https://the4runners.fr/" />
   <meta property="og:image" content="https://the4runners.fr/assets/branding/banniere_audio2text.png" />
@@ -29,7 +29,7 @@
   <meta name="twitter:title" content="Audio2text | Transcription audio et vidéo en texte" />
   <meta
     name="twitter:description"
-    content="Une application Android pour transformer vos fichiers audio et vidéo en texte clair, relire l'audio localement et exporter vos notes."
+    content="Audio2Text pour Android : Whisper, Qwen3 Premium, lecteur audio, recherche et export TXT/SRT."
   />
   <meta name="twitter:image" content="https://the4runners.fr/assets/branding/banniere_audio2text.png" />
   <!-- Données structurées pour aider les moteurs de recherche à identifier l'application Android. -->
@@ -56,7 +56,9 @@
         "Recherche textuelle et intra-audio",
         "Export SRT pour le sous-titrage",
         "Lecteur audio intégré dans les notes",
-        "Texte brut conserve avec post-traitement IA premium"
+        "Texte brut conserve avec post-traitement IA Qwen3 premium",
+        "Sauvegarde personnelle de l'audio dans un espace choisi par l'utilisateur",
+        "Sauvegarde cloud européenne facultative pour les abonnés Premium (en préparation)"
       ]
     }
   </script>
@@ -644,6 +646,67 @@
         padding: 22px;
       }
     }
+
+    /* La sauvegarde reste lisible sans changer l'identité sobre du site. */
+    .backup-section {
+      padding-top: 40px;
+      padding-bottom: 16px;
+    }
+
+    .backup-grid {
+      align-items: stretch;
+    }
+
+    .backup-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .backup-card p {
+      margin: 0;
+    }
+
+    .backup-card--premium {
+      border-color: rgba(47, 111, 179, 0.45);
+      background: linear-gradient(160deg, #f6faff, #eaf3fc);
+    }
+
+    .release-label {
+      align-self: flex-start;
+      display: inline-flex;
+      padding: 5px 12px;
+      border: 1px solid #b5cbe2;
+      border-radius: 999px;
+      color: #174c82;
+      background: #eaf3ff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .backup-card__note {
+      padding-top: 12px;
+      border-top: 1px solid var(--line-soft);
+      color: var(--text-soft);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .backup-disclaimer {
+      max-width: 960px;
+      margin: 18px 0 0;
+      color: var(--text-soft);
+      font-size: 0.87rem;
+      line-height: 1.65;
+    }
+
+    .backup-disclaimer a {
+      color: var(--accent-deep);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
   </style>
 </head>
 <body>
@@ -680,6 +743,7 @@
         <a href="#fonctionnalites">Fonctionnalités</a>
         <a href="#utilisation">Utilisation</a>
         <a href="#avantages">Avantages</a>
+        <a href="#sauvegarde">Sauvegarde</a>
       </nav>
     </div>
   </header>
@@ -730,11 +794,12 @@
 
         <div class="grid features">
           <article class="card">
-            <span class="card-kicker">Transcription</span>
-            <h3>Transformez un fichier audio ou vidéo en texte lisible</h3>
+            <span class="card-kicker">Whisper et Qwen3</span>
+            <h3>Une transcription fidèle, puis un texte mieux structuré</h3>
             <p>
-              L'application prend en charge vos médias, lance le traitement et conserve le texte brut dès qu'il est disponible,
-              même si un post-traitement IA premium continue en arrière-plan.
+              Whisper transcrit vos médias et préserve le texte brut. Avec l'offre Premium,
+              Qwen3 peut améliorer la présentation et la lisibilité du résultat,
+              tout en vous laissant retrouver la version originale.
             </p>
           </article>
 
@@ -834,7 +899,7 @@
         <div class="section-head">
           <h2>Ce qui fait la différence</h2>
           <p>
-            Cette application a été pensé pour vous ! Elle vise à vous accompagner dans la durée, 
+            Cette application a été pensée pour vous. Elle vise à vous accompagner dans la durée, 
             avec une expérience agréable et des résultats fiables.
           </p>
         </div>
@@ -867,6 +932,58 @@
             </p>
           </article>
         </div>
+      </div>
+    </section>
+
+
+    <!-- Deux niveaux de sauvegarde distincts : Drive personnel et cloud Premium en préparation. -->
+    <section id="sauvegarde" class="backup-section" aria-labelledby="sauvegarde-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Vos fichiers, vos choix</span>
+          <h2 id="sauvegarde-title">Conservez l'audio qui compte pour vous</h2>
+          <p>
+            Votre transcription reste utile même lorsque l'audio local n'est plus disponible.
+            Des options de sauvegarde et de restauration vous permettent de garder la main sur vos enregistrements.
+          </p>
+        </div>
+
+        <div class="grid backup-grid">
+          <article class="card backup-card">
+            <span class="card-kicker">Sans abonnement requis</span>
+            <h3>Une copie dans votre propre espace</h3>
+            <p>
+              Sauvegardez l'original depuis votre note vers le dossier de votre choix :
+              stockage du téléphone, carte SD ou Google Drive si ce service apparaît dans Android.
+              Vous pourrez ensuite sélectionner ce fichier pour rétablir le lecteur audio.
+            </p>
+            <p class="backup-card__note">
+              Cette fonction dépend de la version de l'application installée.
+              Audio2Text ne facture pas de stockage cloud pour cette copie personnelle.
+            </p>
+          </article>
+
+          <article class="card backup-card backup-card--premium">
+            <span class="release-label">Cloud Premium · en préparation</span>
+            <h3>Une sauvegarde privée, facultative et temporaire</h3>
+            <p>
+              Pour les abonnés Starter, Plus et Pro actifs : conservation sur demande
+              dans un espace de stockage situé à Paris, pendant 30 jours maximum.
+              Un plafond initial de 100 Mio par compte limite l'espace utilisé.
+            </p>
+            <p class="backup-card__note">
+              L'activation nécessite encore le déploiement du service et une mise à jour Android.
+              Rien n'est transféré pour cette sauvegarde sans choix explicite de l'utilisateur.
+            </p>
+          </article>
+        </div>
+
+        <p class="backup-disclaimer">
+          Un texte transcrit ne permet pas de recréer fidèlement un enregistrement supprimé :
+          pour restaurer le son, il faut avoir conservé une copie du fichier audio.
+          Le traitement de transcription peut utiliser des infrastructures hors Union européenne.
+          <a href="privacy.html">En savoir plus sur vos données</a>.
+        </p>
       </div>
     </section>
 
