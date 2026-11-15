@@ -431,7 +431,7 @@
       <section class="hero policy-shell">
         <span class="eyebrow">Politique de confidentialite</span>
         <h1>Vos donnees, expliquées clairement</h1>
-        <p class="meta"><strong>Dernière mise a jour :</strong> 4 juin 2026</p>
+        <p class="meta"><strong>Dernière mise à jour :</strong> 15 novembre 2026</p>
       </section>
 
       <!-- Le contenu legal reste conserve tel quel, seule la presentation evolue. -->
@@ -481,6 +481,27 @@
             <li><strong>Google Play Billing / Google Play Developer API</strong> : gestion, verification, restauration et controle des achats premium.</li>
           </ul>
 
+          <h2>3.4 Sauvegarde audio facultative : évolution en préparation</h2>
+          <p>
+            Une fonction de sauvegarde personnelle permet de conserver une copie du fichier audio dans un emplacement choisi
+            par l'utilisateur, notamment sur son appareil ou un fournisseur de documents tel que Google Drive.
+            Dans ce cas, l'utilisateur choisit lui-même le fournisseur, soumis à ses propres conditions de conservation.
+          </p>
+          <p>
+            Une option distincte de sauvegarde cloud, <strong>non activée tant que son infrastructure n'est pas déployée</strong>,
+            est prévue pour les abonnements Starter, Plus et Pro actifs.
+            Elle nécessitera une demande expresse depuis la note concernée : aucun audio n'y sera envoyé automatiquement.
+            L'original sera stocké dans un espace privé Google Cloud Storage localisé à Paris (France),
+            avec une conservation maximale de 30 jours, une limite initiale de 100 Mio par compte,
+            et une suppression sur demande, à l'expiration, ou lors de la suppression de la note ou du compte.
+          </p>
+          <p>
+            L'identifiant du compte, celui de la transcription, la taille, l'état de la sauvegarde,
+            ses dates d'expiration et des compteurs temporaires de prévention des abus sont nécessaires au fonctionnement du service.
+            Certaines métadonnées et les traitements de transcription peuvent rester hébergés hors de l'Union européenne.
+            Le stockage de l'original à Paris n'implique donc pas une localisation exclusivement européenne de toutes les données.
+          </p>
+
           <h2>4. Finalites du traitement</h2>
           <ul>
             <li>Fournir la transcription audio/video et les fonctionnalites de notes/export.</li>
@@ -489,6 +510,7 @@
             <li>Permettre la lecture locale du WAV attache a une note et la conservation separee du texte brut et du texte traite par IA lorsque disponible.</li>
             <li>Permettre l'achat premium, la restauration et la verification d'achat.</li>
             <li>Permettre la synchronisation des credits et transcriptions entre le cloud et l'application.</li>
+            <li>Lorsque la sauvegarde facultative est activée, conserver temporairement l'audio choisi par l'abonné Premium, permettre sa restauration et sa suppression, et faire respecter les quotas de sécurité et de coût.</li>
             <li>Compiler des statistiques internes sur les usages declares de l'application.</li>
             <li>Afficher des publicites dans la version non premium.</li>
             <li>Mesurer l'usage, ameliorer la stabilite, la performance et la qualite du service.</li>
@@ -508,6 +530,8 @@
           <ul>
             <li>Donnees locales : conservees sur l'appareil jusqu'a suppression par l'utilisateur ou desinstallation. Les WAV locaux attaches aux notes sont supprimes lorsque la note correspondante est supprimee.</li>
             <li>Fichiers audio/WAV et artefacts techniques de transcription stockes dans notre cloud : conserves le temps necessaire au traitement et a la recuperation du resultat, puis supprimes apres finalisation. Le WAV local conserve dans l'application reste, lui, lie a la note sur l'appareil.</li>
+            <li>Option de sauvegarde cloud Premium, lorsqu'elle sera mise en service et sélectionnée : audio d'origine conservé pendant 30 jours au maximum, avec suppression anticipée possible à tout moment ; suppression également prévue lors de la suppression de la note ou du compte.</li>
+            <li>Compteurs techniques propres à la sauvegarde facultative, lorsqu'elle sera activée : purge périodique des anciennes informations de quotas et suppression des données associées au compte lors de son effacement.</li>
             <li>Profils de compte, wallet de credits et transcriptions synchronisees : conserves tant que le compte existe ou jusqu'a suppression manuelle par l'utilisateur.</li>
             <li>Metadonnees de job de transcription : conservees tant que necessaire pour permettre le suivi, l'arret, la reprise ou la recuperation finale du resultat. Elles sont supprimees apres finalisation complete du traitement.</li>
             <li>Journaux techniques et traces d'execution : conserves temporairement a des fins de diagnostic, puis ecrases lors d'une nouvelle transcription ou supprimes apres quelques heures d'inactivite, selon les besoins techniques raisonnables du service.</li>
