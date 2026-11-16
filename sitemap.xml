@@ -2,17 +2,29 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://the4runners.fr/</loc>
+<<<<<<< HEAD
     <lastmod>2026-11-15</lastmod>
+=======
+    <lastmod>2026-11-16</lastmod>
+>>>>>>> 02e6f9a (modernisation + mise à jour)
     <priority>1.00</priority>
   </url>
   <url>
     <loc>https://the4runners.fr/privacy.html</loc>
+<<<<<<< HEAD
     <lastmod>2026-11-15</lastmod>
+=======
+    <lastmod>2026-11-16</lastmod>
+>>>>>>> 02e6f9a (modernisation + mise à jour)
     <priority>0.50</priority>
   </url>
   <url>
     <loc>https://the4runners.fr/delete-account.html</loc>
+<<<<<<< HEAD
     <lastmod>2026-11-15</lastmod>
+=======
+    <lastmod>2026-11-16</lastmod>
+>>>>>>> 02e6f9a (modernisation + mise à jour)
     <priority>0.40</priority>
   </url>
 </urlset>
