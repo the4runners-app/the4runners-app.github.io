@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Confidentialité Audio2Text | Données, audio et sauvegardes</title>
-    <meta name="description" content="Données traitées par Audio2Text, transcription Whisper, Qwen3, copies personnelles, future sauvegarde Premium, conservation et droits des utilisateurs." />
+    <meta name="description" content="Politique Audio2Text : transcription, éventuelle identification des intervenants, sauvegardes, communications, suppression des données et droits des utilisateurs." />
     <meta name="application-name" content="Audio2Text" />
     <meta name="theme-color" content="#f4f8fc" />
     <link rel="canonical" href="https://the4runners.fr/privacy.html" />
@@ -41,7 +41,7 @@
         <p class="eyebrow">Politique de confidentialité</p>
         <h1>Vos données, expliquées clairement</h1>
         <p class="lead">Ce qui reste sur votre appareil, ce qui est traité dans le cloud et les choix qui vous appartiennent.</p>
-        <p class="meta">Dernière mise à jour : <time datetime="2026-11-16">16 novembre 2026</time></p>
+        <p class="meta">Dernière mise à jour : <time datetime="2026-11-17">17 novembre 2026</time></p>
       </div>
       <div class="legal-layout">
         <nav class="toc" aria-label="Sommaire de la confidentialité">
@@ -49,6 +49,8 @@
           <ul>
             <li><a href="#section-1">Responsable</a></li>
             <li><a href="#section-3">Données traitées</a></li>
+            <li><a href="#diarisation">Intervenants et voix</a></li>
+            <li><a href="#communications">Communications e-mail</a></li>
             <li><a href="#sauvegarde-audio">Sauvegardes audio</a></li>
             <li><a href="#section-7">Transferts hors UE</a></li>
             <li><a href="#section-8">Conservation</a></li>
@@ -86,7 +88,12 @@
             <li>Paramètres de transcription fournis par l'utilisateur, tels que la langue, les instructions personnalisées si renseignées, la plage audio demandée, l'option de repères audio et les demandes de post-traitement IA premium.</li>
             <li>Identifiant Firebase technique nécessaire à l'authentification, à la restauration du compte et à la sécurisation du service.</li>
           </ul>
-          <h3>3.3 Données pouvant être transmises à des services tiers</h3>
+          <h3 id="diarisation">3.3 Identification des intervenants (diarisation)</h3>
+          <p>La diarisation consiste à repérer les moments où différents intervenants parlent dans un même enregistrement et à leur attribuer des étiquettes neutres (« Intervenant 1 », « Intervenant 2 »). Elle ne vise pas à retrouver l'identité civile des personnes ni à les reconnaître d'un enregistrement à l'autre.</p>
+          <p><strong>Disponibilité :</strong> cette fonctionnalité est en préparation et n'est pas encore active pour les transcriptions publiées. Une fois techniquement disponible et annoncée dans l'application, elle pourra être activée par défaut pour les nouvelles transcriptions et désactivée depuis le menu avancé. La version installée et la configuration du serveur détermineront sa disponibilité réelle. En cas d'indisponibilité du modèle, la transcription doit rester possible sans attribution de locuteurs.</p>
+          <p>Si l'option est utilisée, l'audio nécessaire à la reconnaissance des changements d'intervenant et des représentations vocales techniques temporaires est traité par notre service de diarisation. Les plages temporelles et les étiquettes de locuteurs peuvent accompagner la transcription synchronisée. Ces étiquettes sont indicatives et peuvent comporter des erreurs, particulièrement en présence de voix simultanées. Les représentations vocales utilisées pour le calcul ne sont pas destinées à constituer une base d'identification permanente des personnes.</p>
+          <p>L'utilisateur doit disposer d'un motif légitime pour enregistrer et faire traiter la voix des personnes concernées, les informer lorsque cela est requis, et éviter d'importer des enregistrements dont il ne possède pas les droits d'utilisation.</p>
+          <h3>3.4 Données pouvant être transmises à des services tiers</h3>
           <ul>
             <li><strong>Google Cloud / Firebase</strong> : authentification, stockage temporaire, stockage des profils et transcriptions synchronisées, orchestration, métadonnées techniques, Cloud Run, worker Whisper (faster-whisper) auto-hébergé et service Qwen3 auto-hébergé pour le post-traitement de texte Premium sur instruction explicite. Le texte brut et le résultat Qwen3 sont conservés séparément ; aucune instruction Qwen3 signifie aucun post-traitement automatique.</li>
             <li><strong>Google AdMob</strong> : affichage publicitaire, données techniques, identifiants publicitaires et signaux publicitaires selon les règles Google.</li>
@@ -94,14 +101,19 @@
             <li><strong>Google Play Billing / Google Play Developer API</strong> : gestion, vérification, restauration et contrôle des achats premium.</li>
           </ul>
           <!-- Disponibilité à réévaluer uniquement après configuration serveur et publication Android. -->
-          <h3 id="sauvegarde-audio">3.4 Sauvegarde audio personnelle et future option cloud Premium</h3>
+          <h3 id="sauvegarde-audio">3.5 Sauvegarde audio personnelle et future option cloud Premium</h3>
           <p><strong>Copie personnelle, sans abonnement requis.</strong> Selon la version d’Audio2Text installée, l’action « Sauvegarder une copie de l’audio » est proposée depuis une note dont l’audio est disponible et utilise le sélecteur de documents Android. Vous choisissez un emplacement local ou un fournisseur de documents tel que Google Drive, s’il est installé et proposé par ce sélecteur. L’original est privilégié ; le WAV local peut servir de secours si l’original n’est plus disponible. Cette copie n’est pas envoyée au service de sauvegarde cloud d’Audio2Text. Le fournisseur choisi applique ses propres conditions de confidentialité, de localisation et de conservation.</p>
           <p>La conservation du fichier d’origine permet de rétablir une relecture locale fidèle avec « Relier le fichier d’origine ». La synchronisation de la transcription seule ne restaure pas le fichier sonore : aucun son exact ne peut être reconstruit à partir du seul texte.</p>
           <p><strong>Sauvegarde cloud Premium en cours de déploiement, pas encore disponible.</strong> Elle ne sera accessible qu’après configuration du service et publication de la version Android correspondante. Cette option distincte sera réservée aux abonnements Starter, Plus ou Pro actifs pour sauvegarder et restaurer. Elle nécessitera une demande expresse depuis chaque note ; aucun audio n’y sera envoyé automatiquement. Le fichier sera stocké dans un bucket privé Google Cloud Storage européen à Paris (France), avec une rétention maximale de 30 jours et une limite de 100 Mio par compte. Une suppression sera prévue à la demande, à l’expiration, à la suppression de la note ou du compte. La consultation du statut et la suppression resteront possibles après expiration de l’abonnement.</p>
           <p>L’identifiant du compte, celui de la transcription, la taille, l’état de la sauvegarde, ses dates d’expiration et des compteurs temporaires de prévention des abus seront nécessaires au fonctionnement du service. Certaines métadonnées et les traitements de transcription peuvent rester hébergés hors de l’Union européenne. Le stockage du fichier à Paris n’implique donc pas une localisation exclusivement européenne de toutes les données.</p>
+          <h3 id="communications">3.6 Communications par courrier électronique</h3>
+          <p>Les e-mails strictement nécessaires au compte et au service (par exemple vérification de l'adresse, sécurité et informations indispensables concernant une prestation en cours) sont distincts des messages de promotion. Ils peuvent être envoyés lorsqu'ils sont nécessaires au service et conformément aux règles applicables.</p>
+          <p><strong>Campagnes et annonces promotionnelles :</strong> le panneau administrateur ne dispose pas actuellement d'un service d'envoi groupé opérationnel. Si ce service est ajouté, les messages promotionnels ne seront adressés qu'aux personnes disposant d'une base légale valable, en particulier d'un consentement préalable lorsqu'il est requis. Le refus ou le retrait du consentement n'empêche pas l'utilisation normale de l'application. Un moyen simple de se désinscrire sera proposé dans chaque campagne concernée.</p>
+          <p>Les données nécessaires à une future liste de diffusion pourraient comprendre l'adresse e-mail, l'état de l'accord ou du refus, la date de ce choix et un historique technique limité des envois. Elles ne seront pas revendues. Le prestataire d'envoi, ses transferts éventuels et la durée précise de conservation seront documentés avant l'activation du service.</p>
           <h2 id="section-4">4. Finalités du traitement</h2>
           <ul>
             <li>Fournir la transcription audio/vidéo et les fonctionnalités de notes/export.</li>
+            <li>Lorsque la diarisation sera mise en service, distinguer les intervenants dans une transcription sans modifier ni compléter les paroles reconnues, avec possibilité de désactivation pour les nouveaux traitements.</li>
             <li>Permettre la création et la gestion d'un compte utilisateur, la restauration du solde de crédits et des transcriptions après réinstallation, ainsi que l'édition ou la suppression du compte.</li>
             <li>Permettre l'envoi au service cloud, le traitement, l'affichage de la progression, l'arrêt et la reprise d'une transcription.</li>
             <li>Permettre la lecture locale du WAV attaché à une note et la conservation séparée du texte brut et du texte traité par IA lorsque disponible.</li>
@@ -109,14 +121,15 @@
             <li>Permettre la synchronisation des crédits et transcriptions entre le cloud et l'application.</li>
             <li>Lorsque la sauvegarde facultative sera mise en service et choisie, conserver temporairement l'audio choisi par l'abonné Premium, permettre sa restauration et sa suppression, et faire respecter les quotas de sécurité et de coût.</li>
             <li>Compiler des statistiques internes sur les usages déclarés de l'application.</li>
+            <li>Adresser des communications essentielles liées au service ; si une fonctionnalité de diffusion promotionnelle est mise en place, n’envoyer des campagnes qu’aux destinataires disposant d’une base légale valable et gérer leur désinscription.</li>
             <li>Afficher des publicités dans la version non premium.</li>
             <li>Mesurer l'usage, améliorer la stabilité, la performance et la qualité du service.</li>
             <li>Sécuriser le service et prévenir les abus, erreurs techniques et fraudes.</li>
           </ul>
           <h2 id="section-5">5. Bases légales (RGPD)</h2>
-          <p>Selon les cas, les traitements reposent sur l'exécution du service demandé par l'utilisateur, l'intérêt légitime de l'éditeur (sécurité, prévention de fraude, amélioration du service), le respect d'obligations légales, et le consentement lorsque requis.</p>
+          <p>Selon les cas, les traitements reposent sur l'exécution du service demandé par l'utilisateur, l'intérêt légitime de l'éditeur (sécurité, prévention de fraude, amélioration du service), le respect d'obligations légales et le consentement lorsque requis. La prospection commerciale par e-mail auprès des particuliers nécessite en principe un accord préalable, sous réserve des exceptions légales applicables aux clients existants. Le consentement, lorsqu'il est requis, peut être retiré à tout moment.</p>
           <h2 id="section-6">6. Destinataires</h2>
-          <p>Les données sont accessibles uniquement à l'éditeur, dans la limite nécessaire, ainsi qu'aux sous-traitants techniques impliqués dans le fonctionnement du service, notamment Google Firebase, Google Cloud, Google Play et AdMob. Les usages déclarés peuvent être consultés par l'éditeur dans un espace d'administration interne afin d'établir des statistiques d'usage. Aucune vente de données personnelles n'est effectuée.</p>
+          <p>Les données sont accessibles à l'éditeur dans la limite nécessaire, ainsi qu'aux prestataires techniques intervenant dans le fonctionnement du service, notamment Google Firebase, Google Cloud, Google Play et AdMob. Le panneau administrateur permet de consulter certaines informations de compte et adresses e-mail pour le support et la gestion du service, avec contrôle d'accès côté serveur. La consultation d'une adresse ne vaut pas autorisation d'envoi commercial. Aucune vente de données personnelles n'est effectuée.</p>
           <h2 id="section-7">7. Transferts hors UE</h2>
           <p>Certains traitements peuvent être réalisés sur des infrastructures techniques opérées par Google ou leurs entités associées, y compris en dehors de l'Union européenne, selon les mécanismes juridiques et contractuels applicables à ces prestataires. La transcription est traitée sur notre infrastructure Google Cloud par un worker faster-whisper auto-hébergé, sans API externe de transcription déclarée à ce stade.</p>
           <h2 id="section-8">8. Durée de conservation</h2>
@@ -127,8 +140,10 @@
             <li>Compteurs techniques propres à la sauvegarde facultative, lorsqu'elle sera activée : purge périodique des anciennes informations de quotas et suppression des données associées au compte lors de son effacement.</li>
             <li>Profils de compte, wallet de crédits et transcriptions synchronisées : conservés tant que le compte existe ou jusqu’à suppression manuelle par l'utilisateur.</li>
             <li>Métadonnées de job de transcription : conservées tant que nécessaire pour permettre le suivi, l'arrêt, la reprise ou la récupération finale du résultat. Elles sont supprimées après finalisation complète du traitement.</li>
-            <li>Journaux techniques et traces d'exécution : conservés temporairement à des fins de diagnostic, puis écrasés lors d'une nouvelle transcription ou supprimés après quelques heures d'inactivité, selon les besoins techniques raisonnables du service.</li>
+            <li>Journaux techniques et traces d'exécution : conservés selon les politiques de rétention des services utilisés et les nécessités de diagnostic et de sécurité ; leur durée peut différer de celle des fichiers audio. Les journaux exportés volontairement par l'utilisateur restent également dans l'emplacement qu'il choisit.</li>
             <li>Données liées aux achats : conservées pendant la durée nécessaire à la vérification, à la gestion du premium, à la prévention de fraude et au respect des obligations légales.</li>
+            <li>Étiquettes d'intervenants, si la diarisation est activée ultérieurement : associées à la transcription concernée et supprimées avec elle ; les représentations vocales temporaires ne doivent pas être conservées comme un répertoire d'identification.</li>
+            <li>Éventuels choix de réception des campagnes : conservés aussi longtemps que nécessaire pour respecter l'accord, le refus ou la désinscription et répondre aux obligations applicables.</li>
             <li>Demandes de suppression de compte et demandes de remboursement associées : conservées le temps nécessaire au traitement administratif et légal.</li>
             <li>Copies personnelles exportées : conservées dans l’emplacement ou chez le fournisseur choisi, selon ses conditions. La suppression du compte Audio2Text ne supprime pas ces copies ; leur suppression vous appartient.</li>
             <li>Données traitées par les services tiers : selon leurs propres politiques de conservation et de sécurité applicables aux services utilisés.</li>
@@ -138,7 +153,7 @@
           <h2 id="section-10">10. Vos droits</h2>
           <p>Conformément au RGPD et à la loi applicable, vous pouvez demander l'accès, la rectification, l'effacement, la limitation, l'opposition et, lorsque applicable, la portabilité de vos données.</p>
           <p>Pour exercer vos droits : <strong><a href="mailto:rahalmichel@hotmail.fr">rahalmichel@hotmail.fr</a></strong></p>
-          <p>Vous pouvez également supprimer votre compte depuis l'application. Cette action efface les données associées stockées dans le cloud et peut déclencher une demande de remboursement des crédits restants selon les conditions annoncées au moment de la suppression.</p>
+          <p>Vous pouvez également demander la suppression de votre compte depuis l'application, dans l'onglet <strong>Compte</strong>. Après confirmation, le serveur supprime les transcriptions cloud associées, les sauvegardes audio facultatives, le profil et l'identifiant d'authentification. Une partie des données techniques, administratives ou comptables peut être conservée lorsque la loi ou une nécessité justifiée l'impose. Certaines copies personnelles exportées et certains fichiers déjà enregistrés en dehors d'Audio2Text ne sont pas supprimés automatiquement. Consultez les <a href="/delete-account.html">détails de la suppression</a>.</p>
           <p>Vous pouvez supprimer les données locales via les réglages Android (effacer les données) ou en désinstallant l'application, mais la suppression du compte reste nécessaire pour effacer les données synchronisées dans le cloud.</p>
           <h2 id="section-11">11. Enfants</h2>
           <p>Audio2Text n'est pas destinée aux enfants de moins de 13 ans.</p>
