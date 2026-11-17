@@ -14,7 +14,7 @@ La page d'accueil présente des prestations de développement de sites web, d'ap
 
 ## Pages
 
-- `index.html` : prestations, réalisation Audio2Text, méthode et contact
+- `index.html` : prestations, réalisation Audio2Text, méthode et contact\n- `audio2text.html` : présentation dédiée, fonctionnalités réelles et catalogue Hugging Face en préparation
 - `privacy.html` : politique de confidentialité d'Audio2Text
 - `delete-account.html` : procédure de suppression de compte Audio2Text
 - `assets/site.css` : styles communs et responsive
@@ -29,3 +29,5 @@ La transcription seule ne restitue pas le fichier audio source. La sauvegarde pe
 Site statique HTML/CSS et JavaScript léger pour fermer le menu mobile après la navigation ; aucune compilation requise. GitHub Pages publie la branche `master`.
 
 Avant publication : vérifier le menu mobile, la lisibilité, les liens, les conditions d'affichage responsive, l'accès aux pages légales, la validité du sitemap et les balises SEO.
+
+## Modèles de transcription\n\nLa page Audio2Text distingue le moteur Whisper large-v3 en service des candidats Hugging Face turbo, français et arabe en cours d’évaluation. Elle ne doit pas annoncer les candidats comme disponibles avant déploiement et validation des images, des Functions et du client Android.\n
