@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The 4 Runners | Développeur web, mobile et IA</title>
   <meta name="description" content="Création de sites web, développement d'applications web et Android, intégration d'IA et automatisation. Découvrez les prestations The 4 Runners et l'application Audio2Text." />
-  <meta name="theme-color" content="#0b1e3b" />
+  <meta name="theme-color" content="#102e56" />
   <link rel="canonical" href="https://the4runners.fr/" />
   <link rel="icon" type="image/svg+xml" href="/assets/branding/favicon-4r.svg" />
   <link rel="preload" as="image" href="/assets/branding/banniere_audio2text.png" />
@@ -77,19 +77,24 @@
   <main class="business-main" id="contenu" tabindex="-1">
     <section id="accueil" class="hero hero-business container" aria-labelledby="titre-accueil">
       <div class="hero-copy">
-        <p class="eyebrow">Développement web · Mobile · IA</p>
-        <h1 id="titre-accueil">Je crée des sites web et des applications sur mesure.</h1>
-        <p class="lead">Besoin d'un site professionnel, d'un outil métier ou d'une fonctionnalité IA ? Je transforme votre idée en solution numérique claire, fonctionnelle et évolutive.</p>
+        <p class="eyebrow">THE 4 RUNNERS STUDIO <span aria-hidden="true">/</span> DÉVELOPPEMENT WEB · MOBILE · IA</p>
+        <h1 id="titre-accueil">Des sites web et des applications <span class="hero-emphasis">pensés pour durer.</span></h1>
+        <p class="lead">Besoin d'un site professionnel, d'un outil métier ou d'une fonctionnalité IA ? Je conçois des expériences numériques soignées, robustes et évolutives, de la première maquette à la mise en ligne.</p>
         <div class="actions hero-actions">
           <a class="button button-primary" href="#contact">Discuter de mon projet <span aria-hidden="true">↗</span></a>
           <a class="text-link" href="#services">Découvrir les prestations <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-proof" aria-label="Principes de réalisation">
+          <span>Interfaces accessibles</span>
+          <span>Développement maintenable</span>
+          <span>Accompagnement direct</span>
         </div>
         <p class="hero-note">Un interlocuteur technique, de la conception à la mise en œuvre.</p>
       </div>
       <aside class="hero-project" aria-label="Exemple de réalisation">
         <img src="/assets/branding/banniere_audio2text.png" width="1024" height="500" fetchpriority="high" alt="Bannière de l'application Android Audio2Text, sur un paysage enneigé" />
         <div class="hero-project-body">
-          <p class="project-kicker">Exemple de réalisation · Android</p>
+          <p class="project-kicker"><span class="project-kicker-bolt" aria-hidden="true">ϟ</span> Exemple de réalisation · Android</p>
           <h2>Audio2Text</h2>
           <p>Transcription audio et vidéo avec Whisper, complétée par des outils IA en Premium.</p>
           <a href="#realisation">Découvrir le projet <span aria-hidden="true">↗</span></a>
@@ -141,7 +146,7 @@
           <p class="eyebrow">Réalisation</p>
           <h2 id="titre-realisation">Audio2Text : une application Android concrète</h2>
           <p class="project-lead">Une application que j'ai développée pour transformer des enregistrements audio ou vidéo en texte exploitable.</p>
-          <p>Audio2Text utilise Whisper pour la transcription et propose, en Premium, un traitement du texte par Qwen3 sur instruction de l'utilisateur.</p>
+          <p>Audio2Text utilise actuellement Whisper pour la reconnaissance vocale, avec un traitement optionnel du texte par Qwen3 sur instruction de l'utilisateur. Un catalogue de modèles ASR spécialisés issus de Hugging Face est en préparation et ne sera annoncé disponible qu'après validation des services d'inférence.</p>
           <div class="actions">
             <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.the4runners.audio2text" target="_blank" rel="noopener noreferrer">Voir sur Google Play <span aria-hidden="true">↗</span></a>
             <a class="text-link" href="/privacy.html">Confidentialité de l'application</a>
@@ -153,12 +158,19 @@
             <img src="/assets/branding/logo_audio2text_tr.png" width="72" height="72" loading="lazy" alt="" />
             <div>
               <strong>Audio2Text</strong>
-              <span>Application Android</span>
+              <span>Android · Audio vers texte</span>
             </div>
+            <span class="studio-bolt" aria-hidden="true">ϟ</span>
+          </div>
+          <div class="studio-preview" role="img" aria-label="Aperçu illustratif de l'interface audio et transcription de l'application">
+            <div class="studio-preview-top"><span class="studio-preview-icon" aria-hidden="true">ϟ</span><span>Transcription</span><span class="studio-preview-state">Audio traité</span></div>
+            <div class="studio-waveform" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <p class="studio-preview-text">« Votre enregistrement devient un texte que vous pouvez relire, rechercher et conserver. »</p>
+            <span class="studio-preview-note">Illustration de principe · pas une capture d'écran</span>
           </div>
           <h3>Fonctionnalités principales</h3>
           <ul class="project-feature-list">
-            <li>Transcription de fichiers audio et vidéo avec Whisper</li>
+            <li>Reconnaissance vocale multilingue de fichiers audio et vidéo</li>
             <li>Correction, résumé ou traduction avec Qwen3 en Premium, sur instruction</li>
             <li>Recherche dans les transcriptions en Premium</li>
             <li>Lecture audio locale et export TXT ou SRT</li>
