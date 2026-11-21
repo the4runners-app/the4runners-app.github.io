@@ -41,7 +41,7 @@
         <p class="eyebrow">Politique de confidentialité</p>
         <h1>Vos données, expliquées clairement</h1>
         <p class="lead">Ce qui reste sur votre appareil, ce qui est traité dans le cloud et les choix qui vous appartiennent.</p>
-        <p class="meta">Dernière mise à jour : <time datetime="2026-11-17">17 novembre 2026</time></p>
+        <p class="meta">Dernière mise à jour : <time datetime="2026-11-21">21 novembre 2026</time></p>
       </div>
       <div class="legal-layout">
         <nav class="toc" aria-label="Sommaire de la confidentialité">
@@ -52,6 +52,7 @@
             <li><a href="#diarisation">Intervenants et voix</a></li>
             <li><a href="#communications">Communications e-mail</a></li>
             <li><a href="#sauvegarde-audio">Sauvegardes audio</a></li>
+            <li><a href="#enregistrement-appels">Dictaphone et appels enregistrés</a></li>
             <li><a href="#section-7">Transferts hors UE</a></li>
             <li><a href="#section-8">Conservation</a></li>
             <li><a href="#section-10">Vos droits</a></li>
@@ -63,6 +64,7 @@
             <p><strong>Disponible selon la version installée :</strong> transcription des fichiers sélectionnés, traitement des comptes et crédits, conservation des textes synchronisés, gestion des notes et demande de suppression du compte depuis l'application.</p>
             <p><strong>En préparation ou limité aux versions Android compatibles :</strong> le choix du type d'audio (général, cours, réunion, chants ou poésie) est une préférence enregistrée, mais ne sélectionne pas de modèle spécialisé : la transcription utilise toujours Whisper large-v3. Le panneau administrateur peut préparer des brouillons d'e-mails en Cci dans la messagerie de l'appareil pour les contacts vérifiés affichés et sélectionnés ; il ne constitue pas un service d'envoi automatisé.</p>
             <p><strong>Pas encore disponible :</strong> identification automatique des différents intervenants (diarisation), sélection effective de plusieurs modèles ASR, campagnes collectives automatisées depuis le panneau administrateur et sauvegarde audio cloud Premium facultative. Ces fonctionnalités ne doivent pas être considérées comme actives tant que leur backend et leur version Android compatible ne sont pas publiés.</p>
+            <p><strong>Appels téléphoniques et WhatsApp :</strong> Audio2Text ne promet pas la capture directe des deux interlocuteurs. Le dictaphone utilise le microphone pour les enregistrements personnels et s'arrête lorsque le système signale un appel actif. Un appel enregistré avec un autre outil compatible peut être <strong>importé volontairement</strong> pour transcription, après information et accord des participants. Cette possibilité dépend de la version installée et de la disponibilité du fichier.</p>
             <p><strong>Protection des utilisateurs :</strong> l'activation future de la diarisation ne devra ni modifier les paroles reconnues ni empêcher une transcription si l'identification des voix échoue. La création d'un compte ou la vérification d'une adresse e-mail ne vaut pas accord pour recevoir des publicités.</p>
           </aside>
           <h2 id="section-1">1. Identité du responsable de traitement</h2>
@@ -78,6 +80,8 @@
           <ul>
             <li>Fichiers audio/vidéo sélectionnés par l’utilisateur et copies des fichiers d’origine conservées dans le stockage privé de l’application lorsqu’elles sont disponibles.</li>
             <li>Fichiers WAV locaux attachés aux nouvelles notes de transcription pour permettre la lecture audio dans l'application. Ils restent sur l'appareil jusqu’à suppression de la note, effacement des données locales ou désinstallation.</li>
+            <li>Enregistrements du dictaphone dans le stockage privé de l'application, lorsque cette fonction est disponible dans la version installée. Le microphone est utilisé après action explicite et permission Android ; une notification signale l'enregistrement en cours. Les fichiers peuvent être écoutés, exportés ou utilisés comme source d'une transcription à la demande.</li>
+            <li>Fichiers d'appels téléphoniques ou WhatsApp enregistrés par une autre application : Audio2Text n'y accède que si vous les choisissez ou les partagez volontairement avec elle. Le fichier reste sous le contrôle de l'outil d'origine tant que vous ne l'importez pas.</li>
             <li>Cache local des transcriptions et des notes synchronisées avec votre compte.</li>
             <li>Notes, segments et horodatages associés.</li>
             <li>Préférences de l'application (langue, options de transcription, état de traitement).</li>
@@ -90,6 +94,7 @@
             <li>Wallet de crédits associé au compte : formule, crédits inclus, crédits supplémentaires, état de synchronisation.</li>
             <li>Transcriptions synchronisées : titre, contenu, statut, texte brut, texte traité par IA lorsqu'il existe, segments, horodatages et repères audio lorsque disponibles.</li>
             <li>Fichier audio/vidéo sélectionné par l'utilisateur, converti en WAV local pour la lecture dans la note et transmis temporairement à nos services cloud pour traitement.</li>
+            <li>Si vous demandez la transcription d'un enregistrement du dictaphone ou d'un appel déjà enregistré, la piste audio choisie peut être envoyée temporairement à nos services cloud, comme tout autre fichier audio importé. Cela n'est pas déclenché par l'enregistrement ou l'import seul.</li>
             <li>Identifiant technique de transcription, nom du fichier, statut du job, progression, langue détectée, texte partiel et texte final.</li>
             <li>Segments de transcription et repères audio lorsque l'option correspondante est activée.</li>
             <li>Paramètres de transcription fournis par l'utilisateur, tels que la langue, les instructions personnalisées si renseignées, la plage audio demandée, l'option de repères audio et les demandes de post-traitement IA premium.</li>
@@ -117,9 +122,16 @@
           <p>Les e-mails strictement nécessaires au compte et au service (par exemple vérification de l'adresse, sécurité et informations indispensables concernant une prestation en cours) sont distincts des messages de promotion. Ils peuvent être envoyés lorsqu'ils sont nécessaires au service et conformément aux règles applicables.</p>
           <p><strong>Campagnes et annonces promotionnelles :</strong> selon la version Android, le panneau administrateur permet de sélectionner des contacts vérifiés déjà chargés et de préparer dans l'application de messagerie des brouillons par lots en copie cachée (Cci), sans envoi automatique. Cette préparation ne dispense pas de vérifier la base légale de chaque communication et ne constitue pas un service d'envoi de campagnes intégré. La simple inscription à Audio2Text, même avec une adresse vérifiée, ne constitue pas un consentement commercial. Si ce service est ajouté, les campagnes seront limitées aux destinataires dont l'envoi repose sur une base légale valable ; pour les particuliers, un consentement préalable est en principe nécessaire, hormis les exceptions légales strictement applicables aux clients existants. Le refus ou le retrait du consentement n'empêchera pas l'utilisation normale de l'application. Chaque campagne comportera un moyen simple d'opposition ou de désinscription.</p>
           <p>Les données nécessaires à une future liste de diffusion pourraient comprendre l'adresse e-mail, l'état de l'accord ou du refus, la date de ce choix et un historique technique limité des envois. Elles ne seront pas revendues. Le prestataire d'envoi, ses transferts éventuels et la durée précise de conservation seront documentés avant l'activation du service.</p>
+          <h3 id="enregistrement-appels">3.7 Dictaphone, enregistrements d'appels et consentement</h3>
+          <p><strong>Enregistrement micro :</strong> le dictaphone Audio2Text, lorsqu'il est disponible, ne commence à capter le microphone qu'après une action de l'utilisateur et l'autorisation Android correspondante. Un service de premier plan et une notification rendent l'opération visible. Il peut continuer en arrière-plan sous réserve des restrictions du téléphone. L'utilisateur peut le mettre en pause ou y mettre fin ; l'arrêt forcé du système peut interrompre la capture.</p>
+          <p><strong>Appels téléphoniques et WhatsApp :</strong> Audio2Text n'intercepte pas directement le flux audio des appels mobiles ou VoIP. En particulier, il ne garantit pas l'enregistrement de la voix distante via le microphone, le haut-parleur, une oreillette ou Bluetooth. La disponibilité d'un bouton d'enregistrement dans l'application Téléphone dépend du téléphone, du système et de la région. La fonction d'import d'un appel déjà enregistré ne doit pas être confondue avec un enregistrement d'appel en direct.</p>
+          <p><strong>Comment importer :</strong> si votre téléphone ou un outil tiers autorisé permet l'enregistrement, vous pouvez choisir ou partager volontairement ce fichier avec Audio2Text. Les enregistrements du dictaphone restent locaux tant que vous ne lancez pas une transcription cloud ou une sauvegarde distincte. Une transcription demandée peut entraîner l'envoi temporaire de l'audio à notre infrastructure, ainsi que la création de texte et de métadonnées associés à votre compte, conformément aux sections 3.2 et 8.</p>
+          <p><strong>Information des participants :</strong> vous devez informer les personnes concernées de l'enregistrement et obtenir leur accord lorsque le droit applicable l'exige, avant de commencer. Vous devez également disposer d'un fondement juridique approprié pour l'utilisation et la transmission de leurs voix et propos, notamment lorsqu'il s'agit d'un contexte professionnel. Les voix et conversations peuvent contenir des informations personnelles sensibles. N'importez pas un enregistrement obtenu illégalement ou en violation des droits d'autrui. Une autorisation de microphone accordée à Audio2Text ne constitue pas le consentement de vos interlocuteurs.</p>
+          <p><strong>Accès et limites :</strong> le dictaphone Audio2Text ne requiert pas l'accès au journal des appels, aux numéros de téléphone ou aux contacts pour enregistrer au microphone. Audio2Text ne met pas en œuvre de service d'accessibilité pour capter l'audio distant des appels, ni d'enregistrement caché ou automatique des communications. Les outils externes utilisés pour enregistrer ou partager un appel sont soumis à leurs propres politiques de confidentialité.</p>
           <h2 id="section-4">4. Finalités du traitement</h2>
           <ul>
             <li>Fournir la transcription audio/vidéo et les fonctionnalités de notes/export.</li>
+            <li>Lorsque la version installée le permet, enregistrer sur demande les sons du microphone, conserver les prises locales et importer des fichiers d'appels déjà enregistrés avec accord des participants ; transcrire ces fichiers uniquement à la suite d'une demande explicite.</li>
             <li>Lorsque la diarisation sera mise en service, distinguer les intervenants dans une transcription sans modifier ni compléter les paroles reconnues, avec possibilité de désactivation pour les nouveaux traitements.</li>
             <li>Permettre la création et la gestion d'un compte utilisateur, la restauration du solde de crédits et des transcriptions après réinstallation, ainsi que l'édition ou la suppression du compte.</li>
             <li>Permettre l'envoi au service cloud, le traitement, l'affichage de la progression, l'arrêt et la reprise d'une transcription.</li>
@@ -142,6 +154,8 @@
           <h2 id="section-8">8. Durée de conservation</h2>
           <ul>
             <li>Données locales : conservées sur l'appareil jusqu’à suppression par l'utilisateur ou désinstallation. Les WAV locaux attachés aux notes sont supprimés lorsque la note correspondante est supprimée.</li>
+            <li>Enregistrements du dictaphone : conservés dans la bibliothèque locale jusqu'à leur suppression par l'utilisateur, l'effacement des données de l'application ou la désinstallation. Supprimer une transcription ou son compte ne garantit pas la suppression d'une copie audio exportée ou conservée dans un autre emplacement.</li>
+            <li>Appels enregistrés par l'application Téléphone ou un outil tiers : ces originaux restent gérés par cette application ou par l'emplacement choisi. Audio2Text ne peut pas les effacer à distance. Les copies importées et les transcriptions créées à partir de ces fichiers suivent les règles de conservation des fichiers locaux et des transcriptions indiquées dans cette section.</li>
             <li>Fichiers audio/WAV et artefacts techniques de transcription stockés dans notre cloud : conservés le temps nécessaire au traitement et à la récupération du résultat, puis supprimés après finalisation. Le WAV local conservé dans l'application reste, lui, lié à la note sur l'appareil.</li>
             <li>Option de sauvegarde cloud Premium, lorsqu'elle sera mise en service et sélectionnée : audio d'origine conservé pendant 30 jours au maximum, avec suppression anticipée possible à tout moment ; suppression également prévue lors de la suppression de la note ou du compte.</li>
             <li>Compteurs techniques propres à la sauvegarde facultative, lorsqu'elle sera activée : purge périodique des anciennes informations de quotas et suppression des données associées au compte lors de son effacement.</li>
